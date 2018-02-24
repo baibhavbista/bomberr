@@ -64,8 +64,8 @@ Bomber::Bomber(Texture& texture_bomber, Vector2f spriteDim, int color):m_Texture
     //if player 1, start at bottom right
     // TODO
     //set to correct values after hud and walls
-    m_Position.x = (color==0)?(50):(1200);
-    m_Position.y = (color==0)?(50):(650);
+    m_Position.x = (color==0)?(50):(560);
+    m_Position.y = (color==0)?(50):(350);
 }
 
 //returns the sprite

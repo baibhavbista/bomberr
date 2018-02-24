@@ -10,10 +10,12 @@ private:
 
     //textures for the background, players,(.png found inside backgrounds and sprites folders)
     Texture m_BackgroundTexture;
+    Texture m_BlockTexture;
     Texture m_PlayerTexture;
 
     //normal sprite for Background
     Sprite m_BackgroundSprite;
+    Sprite immovable_block;
 
     //Pointer to a bomber
     Bomber* m_PBomber;
