@@ -37,56 +37,6 @@ void Engine::start()
     }
 }
 
-void Engine::input()
-{
-    if(Keyboard::isKeyPressed(Keyboard::Escape))
-    {
-        m_Window.close();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Left))
-    {
-        m_PBomber->moveLeft();
-    }
-    else
-    {
-        m_PBomber->stopLeft();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Right))
-    {
-        m_PBomber->moveRight();
-    }
-    else
-    {
-        m_PBomber->stopRight();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Up))
-    {
-        m_PBomber->moveUp();
-    }
-    else
-    {
-        m_PBomber->stopUp();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Down))
-    {
-        m_PBomber->moveDown();
-    }
-    else
-    {
-        m_PBomber->stopDown();
-    }
-}
 
-void Engine::update(float dtAsSeconds)
-{
-    m_PBomber->update(dtAsSeconds);
-}
 
-void Engine::draw()
-{
-    m_Window.clear(Color::White);
 
-    //m_Window.draw(m_BackgroundSprite);
-    m_Window.draw(m_PBomber->getSprite());
-    m_Window.display();
-}
