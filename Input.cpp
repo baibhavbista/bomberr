@@ -1,4 +1,9 @@
 #include "Engine.h"
+//function that is called in every game loop,from Engine::start()
+//that calls functions in Bomber object when movement keys pressed
+//one user keys left, right, up down
+//other user WASD
+//escape closes the program
 void Engine::input()
 {
     if(Keyboard::isKeyPressed(Keyboard::Escape))
@@ -36,6 +41,39 @@ void Engine::input()
     else
     {
         m_PBomber->stopDown();
+    }
+
+    if(Keyboard::isKeyPressed(Keyboard::A))
+    {
+        m_PBomber0->moveLeft();
+    }
+    else
+    {
+        m_PBomber0->stopLeft();
+    }
+    if(Keyboard::isKeyPressed(Keyboard::D))
+    {
+        m_PBomber0->moveRight();
+    }
+    else
+    {
+        m_PBomber0->stopRight();
+    }
+    if(Keyboard::isKeyPressed(Keyboard::W))
+    {
+        m_PBomber0->moveUp();
+    }
+    else
+    {
+        m_PBomber0->stopUp();
+    }
+    if(Keyboard::isKeyPressed(Keyboard::S))
+    {
+        m_PBomber0->moveDown();
+    }
+    else
+    {
+        m_PBomber0->stopDown();
     }
 
 }

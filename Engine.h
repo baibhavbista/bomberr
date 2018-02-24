@@ -1,25 +1,33 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
+
 #include "Bomber.h"
-#include "AnimatedSprite.hpp"
-#include "Animation.hpp"
 
 class Engine
 {
 private:
+
+    //main program window
     RenderWindow m_Window;
-    Sprite m_BackgroundSprite;
+
+    //textures for the background, players,(.png found inside backgrounds and sprites folders)
     Texture m_BackgroundTexture;
     Texture m_PlayerTexture;
+
+    //normal sprite for Background
+    Sprite m_BackgroundSprite;
+
+    //Pointer to a bomber
     Bomber* m_PBomber;
+    Bomber* m_PBomber0;
+
+    //input, update and draw functions that are called by public member function Engine::start()
     void input();
     void update(Time dt);
     void draw();
-    Animation walkingAnimationUp, walkingAnimationDown, walkingAnimationLeft, walkingAnimationRight;
-    Animation* currentAnimation;
 
 public:
+
     Engine();
 
+    //runs game loop , calls input, update, draw within the loop
     void start();
 };

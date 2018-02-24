@@ -51,6 +51,10 @@
 			<Add library="gdi32" />
 			<Add directory="C:/Program Files (x86)/CodeBlocks/SFML-2.4.2/lib" />
 		</Linker>
+		<Unit filename="AnimatedSprite.cpp" />
+		<Unit filename="AnimatedSprite.hpp" />
+		<Unit filename="Animation.cpp" />
+		<Unit filename="Animation.hpp" />
 		<Unit filename="Bomber.cpp" />
 		<Unit filename="Bomber.h" />
 		<Unit filename="Draw.cpp" />
