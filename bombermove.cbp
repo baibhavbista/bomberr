@@ -51,6 +51,14 @@
 			<Add library="gdi32" />
 			<Add directory="C:/Program Files (x86)/CodeBlocks/SFML-2.4.2/lib" />
 		</Linker>
+		<Unit filename="Bomber.cpp" />
+		<Unit filename="Bomber.h" />
+		<Unit filename="Draw.cpp" />
+		<Unit filename="Engine.cpp" />
+		<Unit filename="Engine.h" />
+		<Unit filename="Engine.hpp" />
+		<Unit filename="Input.cpp" />
+		<Unit filename="Update.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

@@ -390,14 +390,14 @@
 	<string>
 	<vector>
 
-1519457641 source:c:\users\baibhavbista\desktop\bomber\bomber.cpp
+1519464575 source:c:\users\baibhavbista\desktop\bomber\bomber.cpp
 	<SFML/Graphics.hpp>
 	"Bomber.h"
 
 1519457634 c:\users\baibhavbista\desktop\bomber\bomber.h
 	<SFML/Graphics.hpp>
 
-1519459842 source:c:\users\baibhavbista\desktop\bomber\engine.cpp
+1519464050 source:c:\users\baibhavbista\desktop\bomber\engine.cpp
 	"Engine.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -406,4 +406,13 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Bomber.h"
+
+1519464067 source:c:\users\baibhavbista\desktop\bomber\draw.cpp
+	"Engine.h"
+
+1519464016 source:c:\users\baibhavbista\desktop\bomber\input.cpp
+	"Engine.h"
+
+1519464044 source:c:\users\baibhavbista\desktop\bomber\update.cpp
+	"Engine.h"
 

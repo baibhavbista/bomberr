@@ -60,15 +60,15 @@ void Bomber::update(float elapsedTime)
     {
         m_Position.x += m_Speed*elapsedTime;
     }
-    if(m_LeftPressed)
+    else if(m_LeftPressed)
     {
         m_Position.x -= m_Speed*elapsedTime;
     }
-    if(m_UpPressed)
+    else if(m_UpPressed)
     {
         m_Position.y -= m_Speed*elapsedTime;
     }
-    if(m_DownPressed)
+    else if(m_DownPressed)
     {
         m_Position.y += m_Speed*elapsedTime;
     }
