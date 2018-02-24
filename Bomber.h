@@ -1,5 +1,7 @@
 
 #include <SFML/Graphics.hpp>
+#include "AnimatedSprite.hpp"
+#include "Animation.hpp"
 using namespace sf;
 
 enum direction{DOWN, UP, LEFT, RIGHT=5};
@@ -8,7 +10,7 @@ class Bomber
 {
 private:
     Vector2f m_Position;
-    Sprite m_Sprite;
+    AnimatedSprite m_Sprite;
     bool m_LeftPressed;
     bool m_RightPressed;
     bool m_UpPressed;
@@ -16,10 +18,11 @@ private:
     float m_Speed;
     Texture& m_TextureBomber;
     IntRect m_RectSourceSprite, m_RectSourceSprite_down;
-
+    Animation walkingAnimationDown, walkingAnimationUp, walkingAnimationLeft, walkingAnimationRight;
+    Animation* currentAnimation;
 public:
     Bomber(Texture& texture_bomber, IntRect rectSourceSprite);
-    Sprite getSprite();
+    AnimatedSprite getSprite();
     void moveLeft();
     void stopLeft();
     void moveRight();
@@ -28,5 +31,6 @@ public:
     void stopUp();
     void moveDown();
     void stopDown();
-    void update(float elapsedTime);
+    void update(Time dt);
+    bool noKeyPressed();
 };

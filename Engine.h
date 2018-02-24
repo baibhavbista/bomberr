@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Bomber.h"
+#include "AnimatedSprite.hpp"
+#include "Animation.hpp"
 
 class Engine
 {
@@ -11,8 +13,10 @@ private:
     Texture m_PlayerTexture;
     Bomber* m_PBomber;
     void input();
-    void update(float dtAsSeconds);
+    void update(Time dt);
     void draw();
+    Animation walkingAnimationUp, walkingAnimationDown, walkingAnimationLeft, walkingAnimationRight;
+    Animation* currentAnimation;
 
 public:
     Engine();

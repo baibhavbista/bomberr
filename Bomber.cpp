@@ -2,24 +2,63 @@
 #include "Bomber.h"
 using namespace sf;
 
-Bomber::Bomber(Texture& texture_bomber, IntRect rectSourceSprite):m_TextureBomber(texture_bomber)
+Bomber::Bomber(Texture& texture_bomber, IntRect rectSourceSprite):m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
 {
     m_RectSourceSprite_down = rectSourceSprite;
     m_RectSourceSprite = rectSourceSprite;
-    m_Sprite.setTexture(m_TextureBomber);
-    m_Sprite.setTextureRect(m_RectSourceSprite);
-    m_Speed = 400;
+
+    float x = 768/12, y = 384/6;
+
+    walkingAnimationDown.setSpriteSheet(texture_bomber);
+    for(int i = 0; i < 3; i++)
+    {
+        walkingAnimationDown.addFrame(m_RectSourceSprite);
+        m_RectSourceSprite.left += x;
+    }
+    m_RectSourceSprite = m_RectSourceSprite_down;
+    m_RectSourceSprite.top += y;
+
+    walkingAnimationUp.setSpriteSheet(texture_bomber);
+    for(int i = 0; i < 3; i++)
+    {
+        walkingAnimationUp.addFrame(m_RectSourceSprite);
+        m_RectSourceSprite.left += x;
+    }
+    m_RectSourceSprite = m_RectSourceSprite_down;
+    m_RectSourceSprite.top += 2*y;
+
+    walkingAnimationLeft.setSpriteSheet(texture_bomber);
+    for(int i = 0; i < 3; i++)
+    {
+        walkingAnimationLeft.addFrame(m_RectSourceSprite);
+        m_RectSourceSprite.left += x;
+    }
+    m_RectSourceSprite = m_RectSourceSprite_down;
+    m_RectSourceSprite.top += 5*y;
+
+    walkingAnimationRight.setSpriteSheet(texture_bomber);
+    for(int i = 0; i < 3; i++)
+    {
+        walkingAnimationRight.addFrame(m_RectSourceSprite);
+        m_RectSourceSprite.left += x;
+    }
+    m_RectSourceSprite = m_RectSourceSprite_down;
+
+    currentAnimation = &walkingAnimationDown;
+
+    m_Speed = 200;
     m_Position.x = 50;
     m_Position.y = 50;
 }
 
-Sprite Bomber::getSprite()
+AnimatedSprite Bomber::getSprite()
 {
     return m_Sprite;
 }
 
 void Bomber::moveLeft()
 {
+    currentAnimation = &walkingAnimationLeft;
     m_LeftPressed = true;
 }
 void Bomber::stopLeft()
@@ -29,6 +68,7 @@ void Bomber::stopLeft()
 
 void Bomber::moveRight()
 {
+    currentAnimation = &walkingAnimationRight;
     m_RightPressed = true;
 }
 void Bomber::stopRight()
@@ -38,6 +78,7 @@ void Bomber::stopRight()
 
 void Bomber::moveUp()
 {
+    currentAnimation = &walkingAnimationUp;
     m_UpPressed = true;
 }
 void Bomber::stopUp()
@@ -47,6 +88,7 @@ void Bomber::stopUp()
 
 void Bomber::moveDown()
 {
+    currentAnimation = &walkingAnimationDown;
     m_DownPressed = true;
 }
 void Bomber::stopDown()
@@ -54,8 +96,15 @@ void Bomber::stopDown()
     m_DownPressed = false;
 }
 
-void Bomber::update(float elapsedTime)
+bool Bomber::noKeyPressed()
 {
+    return (!(m_UpPressed || m_DownPressed || m_LeftPressed || m_RightPressed));
+}
+
+
+void Bomber::update(Time dt)
+{
+    float elapsedTime = dt.asSeconds();
     if(m_RightPressed)
     {
         m_Position.x += m_Speed*elapsedTime;
@@ -72,6 +121,12 @@ void Bomber::update(float elapsedTime)
     {
         m_Position.y += m_Speed*elapsedTime;
     }
+    m_Sprite.play(*currentAnimation);
     m_Sprite.setPosition(m_Position);
+    if(noKeyPressed())
+    {
+        m_Sprite.stop();
+    }
+    m_Sprite.update(dt);
 }
 
