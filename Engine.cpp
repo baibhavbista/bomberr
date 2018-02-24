@@ -11,7 +11,7 @@ Engine::Engine()
     m_BackgroundTexture.loadFromFile("back.png");
     m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
-    m_PlayerTexture.loadFromFile("bomber1.png");
+    m_PlayerTexture.loadFromFile("sprites/player.png");
 
     float x = 768/12, y = 384/6;
     m_PBomber = new Bomber(m_PlayerTexture, IntRect(0, 0, x, y));
