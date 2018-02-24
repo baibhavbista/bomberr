@@ -7,7 +7,7 @@ Engine::Engine()
     //Vector2f resolution;
     //resolution.x = VideoMode::getDesktopMode().width;
     //resolution.y = VideoMode::getDesktopMode().height;
-    m_Window.create(VideoMode(448, 336), "Bomber Move");
+    m_Window.create(VideoMode(500,500), "Bomber Move");
     m_BackgroundTexture.loadFromFile("back.png");
     m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
@@ -20,8 +20,15 @@ Engine::Engine()
 void Engine::start()
 {
     Clock clock;
+    Event event;
     while(m_Window.isOpen())
     {
+        while(m_Window.pollEvent(event)){
+            if(event.type==Event::Closed){
+                m_Window.close();
+            }
+
+        }
         Time dt = clock.restart();
         float dtAsSeconds = dt.asSeconds();
         input();
