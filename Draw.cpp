@@ -1,4 +1,6 @@
 #include "Engine.h"
+#include "Bomb.h"
+#include "Bomber.h"
 //function that is called in every game loop, from Engine::start()
 //draws all the things
 void Engine::draw()

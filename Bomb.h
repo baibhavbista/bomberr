@@ -7,7 +7,6 @@
 #include "Breakeable.h"
 using namespace sf;
 class Bomber;
-int Bomber::m_numBombs;
 class Bomb
 {
 private:

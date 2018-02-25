@@ -1,4 +1,6 @@
+
 #include "bomb.h"
+#include "bomber.h"
 
 Bomb::Bomb(Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time):m_Texture(texture_bomb), m_Sprite(sf::seconds(0.5), true, false)
 {

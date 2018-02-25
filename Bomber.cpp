@@ -1,5 +1,7 @@
 
+#include "Bomb.h"
 #include "Bomber.h"
+
 using namespace sf;
 
 Bomber::Bomber(Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs):m_TextureBomb(texture_bomb), m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
@@ -175,8 +177,9 @@ void Bomber::dropBomb(Time start_time)
 {
     if(m_numBombs > 0)
     {
-        Vector2f Position(m_Position.x + 32, m_Position.y + 32);
-        (*m_pvBombs).push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time));
+        Vector2f Position(m_Position.x, m_Position.y);
+        m_pvBombs->push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time));
         m_numBombs--;
+        std::cout << m_numBombs << std::endl;
     }
 }

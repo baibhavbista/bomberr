@@ -4,9 +4,10 @@
 #include "AnimatedSprite.hpp"
 #include "Animation.hpp"
 #include <vector>
-#include "Breakeable.h"
-#include "Bomb.h"
+#include "Breakeable.h"=
 using namespace sf;
+
+class Bomb;
 
 //global variables for the IntRect corresponding to walls
 const IntRect TOPWALL(0, 0, 608, 94);
@@ -51,6 +52,7 @@ private:
     Animation* currentAnimation;
 
 public:
+    friend Bomb;
     //Color of the bomber. 0 White, 1 Black, 2 Blue, 3 Red
     int m_color;
 
