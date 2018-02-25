@@ -177,7 +177,15 @@ void Bomber::dropBomb(Time start_time)
 {
     if(m_numBombs > 0)
     {
-        Vector2f Position(m_Position.x, m_Position.y);
+        Vector2f Position = coorIntoGood(Vector2f(m_Position.x + 25.6, m_Position.y + 25.6));
+        if(currentAnimation==&walkingAnimationDown)
+            Position.y += 32;
+        else if(currentAnimation==&walkingAnimationUp)
+            Position.y -= 32;
+        else if(currentAnimation==&walkingAnimationRight)
+            Position.x += 32;
+        else if(currentAnimation==&walkingAnimationLeft)
+            Position.y += 32;
         m_pvBombs->push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time, m_pvBombs));
         m_numBombs--;
         std::cout << "inside funcn dropbomb : " << m_numBombs << std::endl;
