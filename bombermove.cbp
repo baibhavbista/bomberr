@@ -55,6 +55,8 @@
 		<Unit filename="AnimatedSprite.hpp" />
 		<Unit filename="Animation.cpp" />
 		<Unit filename="Animation.hpp" />
+		<Unit filename="Bomb.cpp" />
+		<Unit filename="Bomb.h" />
 		<Unit filename="Bomber.cpp" />
 		<Unit filename="Bomber.h" />
 		<Unit filename="Breakeable.cpp" />

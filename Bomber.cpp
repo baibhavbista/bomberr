@@ -178,8 +178,8 @@ void Bomber::dropBomb(Time start_time)
     if(m_numBombs > 0)
     {
         Vector2f Position(m_Position.x, m_Position.y);
-        m_pvBombs->push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time));
+        m_pvBombs->push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time, m_pvBombs));
         m_numBombs--;
-        std::cout << m_numBombs << std::endl;
+        std::cout << "inside funcn dropbomb : " << m_numBombs << std::endl;
     }
 }

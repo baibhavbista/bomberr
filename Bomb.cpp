@@ -2,8 +2,11 @@
 #include "bomb.h"
 #include "bomber.h"
 
-Bomb::Bomb(Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time):m_Texture(texture_bomb), m_Sprite(sf::seconds(0.5), true, false)
+Bomb::Bomb(Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time, std::vector<Bomb>* pvBombs):m_Texture(texture_bomb), m_Sprite(sf::seconds(0.5), true, false)
 {
+    m_blasted = false;
+    m_pvBombs = pvBombs;
+
     m_pBomber = pBomber;
     m_Position = position;
     m_range = range;
@@ -37,7 +40,12 @@ void Bomb::update(Time dt, Time time)
 
 void Bomb::blast()
 {
-
-    //
+    m_blasted = true;
     m_pBomber->m_numBombs++;
 }
+
+bool Bomb::isBlasted()
+{
+    return m_blasted;
+}
+

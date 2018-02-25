@@ -6,5 +6,11 @@ void Engine::update(Time dt, Time t)
     m_PBomber->update(dt);
     m_PBomber0->update(dt);
     for(int i = 0; i < (*m_pvBombs).size(); i++)
-        (*m_pvBombs)[i].update(dt, t);
+    {
+        if(!((*m_pvBombs)[i]).isBlasted())
+        {
+            (*m_pvBombs)[i].update(dt, t);
+        }
+    }
 }
+

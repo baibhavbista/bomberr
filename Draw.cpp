@@ -37,8 +37,11 @@ void Engine::draw()
 
     for(int i = 0; i < (*m_pvBombs).size(); i++)
     {
-        dispSprite = (*m_pvBombs)[i].getSprite();
-        m_Window.draw(dispSprite);
+        if(!((*m_pvBombs)[i]).isBlasted())
+        {
+            dispSprite = (*m_pvBombs)[i].getSprite();
+            m_Window.draw(dispSprite);
+        }
     }
     //m_Window.draw(immovable_block);
     //display the window
