@@ -5,6 +5,7 @@
 #include "Animation.hpp"
 #include <vector>
 #include "Breakeable.h"
+#include "Bomb.h"
 using namespace sf;
 
 //global variables for the IntRect corresponding to walls
@@ -20,7 +21,11 @@ private:
     //this vector holds the x and y position of the sprite
     Vector2f m_Position;
 
-
+    //vector that has the bombs
+    std::vector<Bomb>* m_pvBombs;
+    //num of bombs
+    int m_numBombs;
+    int m_bombRange;
     //booleans that are set when have to move in a certain direction
     bool m_LeftPressed;
     bool m_RightPressed;
@@ -37,6 +42,7 @@ private:
 
     //Texture pointer for the bomber
     Texture& m_TextureBomber;
+    Texture& m_TextureBomb;
 
     //animations for the movement
     Animation walkingAnimationDown, walkingAnimationUp, walkingAnimationLeft, walkingAnimationRight;
@@ -48,7 +54,7 @@ public:
     //Color of the bomber. 0 White, 1 Black, 2 Blue, 3 Red
     int m_color;
 
-    Bomber(Texture& texture_bomber, Vector2f spriteDim, int color);
+    Bomber(Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs);
 
     //gives position vector of the sprite
     IntRect getCollisionRect();
@@ -76,4 +82,6 @@ public:
     void moveDown();
     void stopDown();
     void stop();
+
+    void dropBomb(Time start_time);
 };

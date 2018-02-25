@@ -2,8 +2,11 @@
 #include "Bomber.h"
 using namespace sf;
 
-Bomber::Bomber(Texture& texture_bomber, Vector2f spriteDim, int color):m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
+Bomber::Bomber(Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs):m_TextureBomb(texture_bomb), m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
 {
+    m_pvBombs = pvBombs;
+    m_numBombs = 3;
+    m_bombRange = 2;
     m_Sprite.setScale(0.8,0.8);
     //color of the bomber
     m_color = color;
@@ -69,8 +72,6 @@ Bomber::Bomber(Texture& texture_bomber, Vector2f spriteDim, int color):m_Texture
     //set to correct values after hud and walls
     m_Position.x = (color==0)?(52-spriteDim.x/2):(567-spriteDim.x/2);
     m_Position.y = (color==0)?(126-spriteDim.y/2):(421-spriteDim.y/2);
-    //m_Position.x = (52-spriteDim.x/2);
-    //m_Position.y = (126-spriteDim.y/2);
 
 }
 
@@ -158,6 +159,8 @@ void Bomber::stopDown()
     m_DownPressed = false;
 }
 
+
+
 void Bomber::stop()
 {
     m_DownPressed = false;
@@ -165,4 +168,15 @@ void Bomber::stop()
     m_LeftPressed = false;
     m_RightPressed = false;
     m_Sprite.stop();
+}
+
+
+void Bomber::dropBomb(Time start_time)
+{
+    if(m_numBombs > 0)
+    {
+        Vector2f Position(m_Position.x + 32, m_Position.y + 32);
+        (*m_pvBombs).push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time));
+        m_numBombs--;
+    }
 }

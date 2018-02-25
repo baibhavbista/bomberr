@@ -1,12 +1,10 @@
 
 #include "Engine.h"
 
-
-
 int main()
 {
-
-    Engine engine;
+    std::vector<Bomb> m_vBombs;
+    Engine engine(&m_vBombs);
     engine.start();
     return 0;
 }

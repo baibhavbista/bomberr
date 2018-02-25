@@ -1,10 +1,11 @@
 #include "Engine.h"
+using namespace sf;
 //function that is called in every game loop,from Engine::start()
 //that calls functions in Bomber object when movement keys pressed
 //one user keys left, right, up down
 //other user WASD
 //escape closes the program
-int Engine::input()
+int Engine::input(Time t)
 {
 
     if(Keyboard::isKeyPressed(Keyboard::Escape))
@@ -46,6 +47,10 @@ int Engine::input()
         {
             m_PBomber->stopDown();
         }
+        if(Keyboard::isKeyPressed(Keyboard::SemiColon))
+        {
+            m_PBomber->dropBomb(t);
+        }
     }
 
     if(!m_PBomber0->collide(m_pvBlocksBreakable))
@@ -82,6 +87,10 @@ int Engine::input()
         else
         {
             m_PBomber0->stopDown();
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Space))
+        {
+            m_PBomber0->dropBomb(t);
         }
     }
     return 0;

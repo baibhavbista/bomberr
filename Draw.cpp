@@ -1,6 +1,4 @@
 #include "Engine.h"
-
-
 //function that is called in every game loop, from Engine::start()
 //draws all the things
 void Engine::draw()
@@ -35,6 +33,11 @@ void Engine::draw()
     //dispSprite.setScale(0.8, 0.8);
     m_Window.draw(dispSprite);
 
+    for(int i = 0; i < (*m_pvBombs).size(); i++)
+    {
+        dispSprite = (*m_pvBombs)[i].getSprite();
+        m_Window.draw(dispSprite);
+    }
     //m_Window.draw(immovable_block);
     //display the window
     m_Window.display();
