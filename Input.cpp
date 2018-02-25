@@ -4,77 +4,86 @@
 //one user keys left, right, up down
 //other user WASD
 //escape closes the program
-void Engine::input()
+int Engine::input()
 {
 
     if(Keyboard::isKeyPressed(Keyboard::Escape))
     {
         m_Window.close();
     }
-    if(Keyboard::isKeyPressed(Keyboard::Left))
+
+    if(!m_PBomber->collide())
     {
-        m_PBomber->moveLeft();
-    }
-    else
-    {
-        m_PBomber->stopLeft();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Right))
-    {
-        m_PBomber->moveRight();
-    }
-    else
-    {
-        m_PBomber->stopRight();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Up))
-    {
-        m_PBomber->moveUp();
-    }
-    else
-    {
-        m_PBomber->stopUp();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Down))
-    {
-        m_PBomber->moveDown();
-    }
-    else
-    {
-        m_PBomber->stopDown();
+        if(Keyboard::isKeyPressed(Keyboard::Left))
+        {
+            m_PBomber->moveLeft();
+        }
+        else
+        {
+            m_PBomber->stopLeft();
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Right))
+        {
+            m_PBomber->moveRight();
+        }
+        else
+        {
+            m_PBomber->stopRight();
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Up))
+        {
+            m_PBomber->moveUp();
+        }
+        else
+        {
+            m_PBomber->stopUp();
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Down))
+        {
+            m_PBomber->moveDown();
+        }
+        else
+        {
+            m_PBomber->stopDown();
+        }
     }
 
-    if(Keyboard::isKeyPressed(Keyboard::A))
+    if(!m_PBomber0->collide())
     {
-        m_PBomber0->moveLeft();
+
+        if(Keyboard::isKeyPressed(Keyboard::A))
+        {
+            m_PBomber0->moveLeft();
+        }
+        else
+        {
+            m_PBomber0->stopLeft();
+        }
+        if(Keyboard::isKeyPressed(Keyboard::D))
+        {
+            m_PBomber0->moveRight();
+        }
+        else
+        {
+            m_PBomber0->stopRight();
+        }
+        if(Keyboard::isKeyPressed(Keyboard::W))
+        {
+            m_PBomber0->moveUp();
+        }
+        else
+        {
+            m_PBomber0->stopUp();
+        }
+        if(Keyboard::isKeyPressed(Keyboard::S))
+        {
+            m_PBomber0->moveDown();
+        }
+        else
+        {
+            m_PBomber0->stopDown();
+        }
     }
-    else
-    {
-        m_PBomber0->stopLeft();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::D))
-    {
-        m_PBomber0->moveRight();
-    }
-    else
-    {
-        m_PBomber0->stopRight();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::W))
-    {
-        m_PBomber0->moveUp();
-    }
-    else
-    {
-        m_PBomber0->stopUp();
-    }
-    if(Keyboard::isKeyPressed(Keyboard::S))
-    {
-        m_PBomber0->moveDown();
-    }
-    else
-    {
-        m_PBomber0->stopDown();
-    }
+    return 0;
 
 }

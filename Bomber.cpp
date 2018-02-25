@@ -4,8 +4,11 @@ using namespace sf;
 
 Bomber::Bomber(Texture& texture_bomber, Vector2f spriteDim, int color):m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
 {
+    m_Sprite.setScale(0.8,0.8);
     //color of the bomber
     m_color = color;
+
+    m_spriteDim = spriteDim;
 
     //two IntRect which denote sprite location in spritesheet
     //_down one acts as reference while the other one is constantly modified during sprite loading into animations
@@ -64,8 +67,11 @@ Bomber::Bomber(Texture& texture_bomber, Vector2f spriteDim, int color):m_Texture
     //if player 1, start at bottom right
     // TODO
     //set to correct values after hud and walls
-    m_Position.x = (color==0)?(50):(560);
-    m_Position.y = (color==0)?(50):(350);
+    m_Position.x = (color==0)?(52-spriteDim.x/2):(567-spriteDim.x/2);
+    m_Position.y = (color==0)?(126-spriteDim.y/2):(421-spriteDim.y/2);
+    //m_Position.x = (52-spriteDim.x/2);
+    //m_Position.y = (126-spriteDim.y/2);
+
 }
 
 //returns the sprite
@@ -110,6 +116,7 @@ void Bomber::update(Time dt)
     m_Sprite.update(dt);
 }
 
+
 //functions to select animation and set and reset the boolean variables defined above like m_LeftPressed
 void Bomber::moveLeft()
 {
@@ -149,4 +156,13 @@ void Bomber::moveDown()
 void Bomber::stopDown()
 {
     m_DownPressed = false;
+}
+
+void Bomber::stop()
+{
+    m_DownPressed = false;
+    m_UpPressed = false;
+    m_LeftPressed = false;
+    m_RightPressed = false;
+    m_Sprite.stop();
 }

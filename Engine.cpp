@@ -10,8 +10,8 @@ Engine::Engine()
     std::cout << resolution.x << "\t" << resolution.y <<std::endl;
     */
 
-    //For now, limited to 1366 by 768.
-    m_Window.create(VideoMode(640, 448), "Bomber Move");
+    //resolution based on size of frame, which is (608, 416).
+    m_Window.create(VideoMode(608, 416+65), "Bomber Move");
 
     //sets framerate to 60 fps
     m_Window.setFramerateLimit(60);
@@ -21,13 +21,19 @@ Engine::Engine()
     m_BackgroundTexture.loadFromFile("backgrounds/back.png");
     m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
+    //frame texture and sprite
+    m_FrameTexture.loadFromFile("sprites/frame.png");
+    m_FrameSprite.setTexture(m_FrameTexture);
+    m_FrameSprite.setPosition(0, 65);
+
     //block textures
+    /*
     m_BlockTexture.loadFromFile("sprites/blocks.png");
     immovable_block.setTexture(m_BlockTexture);
     immovable_block.setTextureRect(IntRect(0, 0, 32, 32));
     immovable_block.setScale(1.5, 1.5);
     immovable_block.setPosition(Vector2f(-10,0));
-
+    */
     //Players texture loaded
     m_PlayerTexture.loadFromFile("sprites/player.png");
 
@@ -42,6 +48,7 @@ void Engine::start()
 {
     Clock clock;
     Event event;
+    Vector2f prev(768/12, 384/6);
     while(m_Window.isOpen())
     {
         while(m_Window.pollEvent(event))

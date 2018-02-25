@@ -14,13 +14,16 @@ private:
     //this vector holds the x and y position of the sprite
     Vector2f m_Position;
 
-    AnimatedSprite m_Sprite;
-
     //booleans that are set when have to move in a certain direction
     bool m_LeftPressed;
     bool m_RightPressed;
     bool m_UpPressed;
     bool m_DownPressed;
+
+
+    Vector2f m_spriteDim;
+
+    AnimatedSprite m_Sprite;
 
     //speed of the bomber in pixels/sec
     float m_Speed;
@@ -35,11 +38,13 @@ private:
     Animation* currentAnimation;
 
 public:
-
     //Color of the bomber. 0 White, 1 Black, 2 Blue, 3 Red
     int m_color;
 
     Bomber(Texture& texture_bomber, Vector2f spriteDim, int color);
+
+    //gives position vector of the sprite
+    IntRect getCollisionRect();
 
     //returns the sprite
     //called by Engine::draw() to draw on the screen
@@ -47,6 +52,8 @@ public:
 
     //returns true if no key(movement key) is pressed. Used in update function above to stop
     bool noKeyPressed();
+
+    bool collide();
 
     //function that updates m_Sprite(animation, position, continue or stop, etc)
     void update(Time dt);
@@ -60,4 +67,5 @@ public:
     void stopUp();
     void moveDown();
     void stopDown();
+    void stop();
 };
