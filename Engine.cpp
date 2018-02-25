@@ -9,6 +9,7 @@ Engine::Engine(std::vector<Bomb>* pm_vBombs)
     //sets framerate to 60 fps
     m_Window.setFramerateLimit(60);
 
+    createLevel("Levels/1.csv", Level);
 
     //loads background from file
     //TODO: random background
@@ -25,8 +26,8 @@ Engine::Engine(std::vector<Bomb>* pm_vBombs)
     m_FrameSprite.setTexture(m_FrameTexture);
     m_FrameSprite.setPosition(0, 65);
 
-    m_plevel = new LevelMaker();
-    m_pvBlocksBreakable = m_plevel->getVBlocksBreakable();
+/*    m_plevel = new LevelMaker();
+    m_pvBlocksBreakable = m_plevel->getVBlocksBreakable();*/
     //block textures
 
     //Players texture loaded

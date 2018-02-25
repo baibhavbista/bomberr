@@ -12,7 +12,21 @@ void Engine::draw()
     m_Window.draw(m_BackgroundSprite);
     m_Window.draw(m_FrameSprite);
 
-    std::vector<Breakeable> v = *m_pvBlocksBreakable;
+    Vector2f coor_tr;
+    for(int r = 0; r < 11; r++)
+    {
+        for(int c = 0; c < 17; c++)
+        {
+            if(Level[r][c] == 1)
+            {
+                coor_tr = rcIntoCoor(r,c);
+                m_BlockSprite.setPosition(coor_tr);
+                m_Window.draw(m_BlockSprite);
+            }
+        }
+    }
+
+/*    std::vector<Breakeable> v = *m_pvBlocksBreakable;
     for(int i = 0; i < v.size(); i++)
     {
         //std::cout << "breakable done" << std::endl;
@@ -22,7 +36,7 @@ void Engine::draw()
             m_BlockSprite.setPosition(v[i].getPosition());
             m_Window.draw(m_BlockSprite);
         }
-    }
+    }*/
 
     //draw player 0, upscaled 1.2
     AnimatedSprite dispSprite = (m_PBomber0->getSprite());

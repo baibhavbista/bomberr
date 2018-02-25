@@ -1,5 +1,5 @@
 
-#include "LevelMaker.h"
+#include "Level.h"
 #include "Bomb.h"
 #include "Bomber.h"
 
@@ -11,6 +11,7 @@ private:
     //main program window
     RenderWindow m_Window;
 
+    int Level[11][17];
     //LevelMaker m_level;
 
     //textures for the background, players,(.png found inside backgrounds and sprites folders)
@@ -27,8 +28,8 @@ private:
 
     std::vector<Bomb>* m_pvBombs;
 
-    LevelMaker* m_plevel;
-    std::vector<Breakeable>* m_pvBlocksBreakable;
+    //LevelMaker* m_plevel;
+    //std::vector<Breakeable>* m_pvBlocksBreakable;
 
     //Pointer to a bomber
     Bomber* m_PBomber;

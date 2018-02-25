@@ -45,24 +45,28 @@ void Bomber::moveAfterCollision(IntRect Player0, IntRect block)
     }
 }
 
-bool Bomber::collide(std::vector<Breakeable>* pvBlocksBreakable)
+bool Bomber::collide(int Level[11][17])
 {
     IntRect Player0 =  getCollisionRect();
     IntRect block;
-    for(int r = 1; r <= 5; r++)
+    for(int r = 0; r < 11; r++)
     {
-        for(int c = 1; c <= 8; c++)
+        for(int c = 0; c < 17; c++)
         {
-            Vector2f coor_tr = rcIntoCoor(2*r-1,2*c-1);
-            block = IntRect(coor_tr.x, coor_tr.y, 25, 30);
-            if(Player0.intersects(block))
+            if(Level[r][c]==1 || Level[r][c]==2)
             {
-                moveAfterCollision(Player0, block);
-                return true;
+                Vector2f coor_tr = rcIntoCoor(r,c);
+                block = IntRect(coor_tr.x, coor_tr.y, 25, 30);
+                if(Player0.intersects(block))
+                {
+                    moveAfterCollision(Player0, block);
+                    return true;
+                }
             }
+
         }
     }
-
+/*
     for(int i = 0; i < int((pvBlocksBreakable)->size()); i++)
     {
         Breakeable block = ((*pvBlocksBreakable)[i]);
@@ -76,7 +80,7 @@ bool Bomber::collide(std::vector<Breakeable>* pvBlocksBreakable)
             }
         }
 
-    }
+    }*/
     IntRect wall = TOPWALL;
     if(Player0.intersects(wall))
     {
@@ -101,8 +105,6 @@ bool Bomber::collide(std::vector<Breakeable>* pvBlocksBreakable)
         moveAfterCollision(Player0, wall);
         return true;
     }
-
-
 
     return false;
 

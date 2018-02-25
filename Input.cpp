@@ -14,7 +14,7 @@ int Engine::input(Time t)
         m_Window.close();
     }
 
-    if(!m_PBomber->collide(m_pvBlocksBreakable))
+    if(!m_PBomber->collide(Level))
     {
         if(Keyboard::isKeyPressed(Keyboard::Left))
         {
@@ -54,7 +54,7 @@ int Engine::input(Time t)
         }
     }
 
-    if(!m_PBomber0->collide(m_pvBlocksBreakable))
+    if(!m_PBomber0->collide(Level))
     {
 
         if(Keyboard::isKeyPressed(Keyboard::A))

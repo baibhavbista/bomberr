@@ -69,7 +69,7 @@ public:
     bool noKeyPressed();
 
     void moveAfterCollision(IntRect Player0, IntRect block);
-    bool collide(std::vector<Breakeable>* pvBlocksBreakable);
+    bool collide(int Level[11][17]);
 
     //function that updates m_Sprite(animation, position, continue or stop, etc)
     void update(Time dt);
