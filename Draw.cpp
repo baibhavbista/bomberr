@@ -23,6 +23,14 @@ void Engine::draw()
                 m_BlockSprite.setPosition(coor_tr);
                 m_Window.draw(m_BlockSprite);
             }
+
+            if(Level[r][c] == 4)
+            {
+                coor_tr = rcIntoCoor(r,c);
+                Sprite bomb(m_BombTexture, IntRect(0, 0, 32, 32));
+                bomb.setPosition(coor_tr);
+                m_Window.draw(bomb);
+            }
         }
     }
 
