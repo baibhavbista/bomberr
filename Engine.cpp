@@ -17,8 +17,8 @@ Engine::Engine()
     m_BlockTexture.loadFromFile("Sprites/breakable.png");
     m_BlockSprite.setTexture(m_BlockTexture);
     //frame texture and sprite
-    if(m_FrameTexture.loadFromFile("sprites/frame.png"))
-        std::cout << "Successful" <<std::endl;
+    m_FrameTexture.loadFromFile("sprites/frame.png");
+        //std::cout << "Successful" <<std::endl;
 
     m_FrameSprite.setTexture(m_FrameTexture);
     m_FrameSprite.setPosition(0, 65);

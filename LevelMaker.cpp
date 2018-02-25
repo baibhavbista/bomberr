@@ -18,7 +18,7 @@ LevelMaker::LevelMaker()
         {
             if(ch=='1')
             {
-                std::cout << "(" << c/17 << ", " << c%17 << ")" <<std::endl;
+                //std::cout << "(" << c/17 << ", " << c%17 << ")" <<std::endl;
                 vBlocksBreakable.push_back(Breakeable(c/17,c%17));
             }
             c++;
