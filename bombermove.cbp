@@ -57,11 +57,16 @@
 		<Unit filename="Animation.hpp" />
 		<Unit filename="Bomber.cpp" />
 		<Unit filename="Bomber.h" />
+		<Unit filename="Breakeable.cpp" />
+		<Unit filename="Breakeable.h" />
+		<Unit filename="Collide.cpp" />
 		<Unit filename="Draw.cpp" />
 		<Unit filename="Engine.cpp" />
 		<Unit filename="Engine.h" />
 		<Unit filename="Engine.hpp" />
 		<Unit filename="Input.cpp" />
+		<Unit filename="RCintoCoor.cpp" />
+		<Unit filename="RCintoCoor.h" />
 		<Unit filename="Update.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>

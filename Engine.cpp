@@ -3,13 +3,6 @@ using namespace sf;
 
 Engine::Engine()
 {
-    /*FULLSCREEN
-    Vector2f resolution;
-    resolution.x = VideoMode::getDesktopMode().width;
-    resolution.y = VideoMode::getDesktopMode().height;
-    std::cout << resolution.x << "\t" << resolution.y <<std::endl;
-    */
-
     //resolution based on size of frame, which is (608, 416).
     m_Window.create(VideoMode(608, 416+65), "Bomber Move");
 
@@ -21,19 +14,18 @@ Engine::Engine()
     m_BackgroundTexture.loadFromFile("backgrounds/back.png");
     m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
+    m_BlockTexture.loadFromFile("Sprites/breakable");
+    m_BlockSprite.setTexture(m_BlockTexture);
     //frame texture and sprite
     m_FrameTexture.loadFromFile("sprites/frame.png");
     m_FrameSprite.setTexture(m_FrameTexture);
     m_FrameSprite.setPosition(0, 65);
 
+    m_plevel = new LevelMaker();
+
+    m_pvBlocksBreakable = m_plevel->getVBlocksBreakable();
     //block textures
-    /*
-    m_BlockTexture.loadFromFile("sprites/blocks.png");
-    immovable_block.setTexture(m_BlockTexture);
-    immovable_block.setTextureRect(IntRect(0, 0, 32, 32));
-    immovable_block.setScale(1.5, 1.5);
-    immovable_block.setPosition(Vector2f(-10,0));
-    */
+
     //Players texture loaded
     m_PlayerTexture.loadFromFile("sprites/player.png");
 
@@ -49,8 +41,10 @@ void Engine::start()
     Clock clock;
     Event event;
     Vector2f prev(768/12, 384/6);
+    Clock timer;
     while(m_Window.isOpen())
     {
+        std::cout << timer.getElapsedTime().asSeconds() << std::endl;
         while(m_Window.pollEvent(event))
         {
             //if close button pressed, close

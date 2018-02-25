@@ -11,6 +11,9 @@ void Engine::draw()
     m_Window.draw(m_BackgroundSprite);
     m_Window.draw(m_FrameSprite);
 
+    vector<Breakeable> v = *m_pvBlocksBreakable;
+    for(int i = 0; i < v.size(); i++)
+        m_Window.draw()
     //draw player 0, upscaled 1.2
     AnimatedSprite dispSprite = (m_PBomber0->getSprite());
     //dispSprite.setScale(0.8, 0.8);

@@ -1,11 +1,17 @@
-
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "AnimatedSprite.hpp"
-
-#include "AnimatedSprite.hpp"
 #include "Animation.hpp"
+#include <vector>
+#include "Breakeable.h"
 using namespace sf;
+
+//global variables for the IntRect corresponding to walls
+const IntRect TOPWALL(0, 0, 608, 94);
+const IntRect BOTTOMWALL(0, 450, 608, 27);
+const IntRect LEFTWALL(0, 0, 27, 481);
+const IntRect RIGHTWALL(578, 0, 27, 481);
 
 class Bomber
 {
@@ -13,6 +19,7 @@ private:
 
     //this vector holds the x and y position of the sprite
     Vector2f m_Position;
+
 
     //booleans that are set when have to move in a certain direction
     bool m_LeftPressed;
@@ -53,7 +60,8 @@ public:
     //returns true if no key(movement key) is pressed. Used in update function above to stop
     bool noKeyPressed();
 
-    bool collide();
+    void moveAfterCollision(IntRect Player0, IntRect block);
+    bool collide(std::vector<Breakeable>* pvBlocksBreakable);
 
     //function that updates m_Sprite(animation, position, continue or stop, etc)
     void update(Time dt);

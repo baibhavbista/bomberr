@@ -1,5 +1,6 @@
-
+#pragma once
 #include "Bomber.h"
+#include "LevelMaker.h"
 
 class Engine
 {
@@ -7,6 +8,8 @@ private:
 
     //main program window
     RenderWindow m_Window;
+
+    //LevelMaker m_level;
 
     //textures for the background, players,(.png found inside backgrounds and sprites folders)
     Texture m_BackgroundTexture;
@@ -17,7 +20,9 @@ private:
     //normal sprite for Background
     Sprite m_BackgroundSprite;
     Sprite m_FrameSprite;
-    Sprite immovable_block;
+
+    LevelMaker* m_plevel;
+    std::vector<Breakeable>* m_pvBlocksBreakable;
 
     //Pointer to a bomber
     Bomber* m_PBomber;
@@ -29,6 +34,8 @@ private:
     void draw();
 
 public:
+
+    //std::vector<Breakeable>* pVBlocksBreakable;
 
     Engine();
 

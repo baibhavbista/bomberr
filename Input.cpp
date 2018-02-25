@@ -12,7 +12,7 @@ int Engine::input()
         m_Window.close();
     }
 
-    if(!m_PBomber->collide())
+    if(!m_PBomber->collide(m_pvBlocksBreakable))
     {
         if(Keyboard::isKeyPressed(Keyboard::Left))
         {
@@ -48,7 +48,7 @@ int Engine::input()
         }
     }
 
-    if(!m_PBomber0->collide())
+    if(!m_PBomber0->collide(m_pvBlocksBreakable))
     {
 
         if(Keyboard::isKeyPressed(Keyboard::A))
