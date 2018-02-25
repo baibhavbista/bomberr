@@ -1,5 +1,6 @@
 #include "Engine.h"
 
+
 //function that is called in every game loop, from Engine::start()
 //draws all the things
 void Engine::draw()
@@ -11,9 +12,18 @@ void Engine::draw()
     m_Window.draw(m_BackgroundSprite);
     m_Window.draw(m_FrameSprite);
 
-    vector<Breakeable> v = *m_pvBlocksBreakable;
+    std::vector<Breakeable> v = *m_pvBlocksBreakable;
     for(int i = 0; i < v.size(); i++)
-        m_Window.draw()
+    {
+        //std::cout << "breakable done" << std::endl;
+        if(!v[i].isBroken())
+        {
+            //std::cout << "breakable done" << std::endl;
+            m_BlockSprite.setPosition(v[i].getPosition());
+            m_Window.draw(m_BlockSprite);
+        }
+    }
+
     //draw player 0, upscaled 1.2
     AnimatedSprite dispSprite = (m_PBomber0->getSprite());
     //dispSprite.setScale(0.8, 0.8);

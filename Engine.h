@@ -20,6 +20,7 @@ private:
     //normal sprite for Background
     Sprite m_BackgroundSprite;
     Sprite m_FrameSprite;
+    Sprite m_BlockSprite;
 
     LevelMaker* m_plevel;
     std::vector<Breakeable>* m_pvBlocksBreakable;

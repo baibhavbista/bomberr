@@ -14,10 +14,12 @@ Engine::Engine()
     m_BackgroundTexture.loadFromFile("backgrounds/back.png");
     m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
-    m_BlockTexture.loadFromFile("Sprites/breakable");
+    m_BlockTexture.loadFromFile("Sprites/breakable.png");
     m_BlockSprite.setTexture(m_BlockTexture);
     //frame texture and sprite
-    m_FrameTexture.loadFromFile("sprites/frame.png");
+    if(m_FrameTexture.loadFromFile("sprites/frame.png"))
+        std::cout << "Successful" <<std::endl;
+
     m_FrameSprite.setTexture(m_FrameTexture);
     m_FrameSprite.setPosition(0, 65);
 
@@ -44,7 +46,7 @@ void Engine::start()
     Clock timer;
     while(m_Window.isOpen())
     {
-        std::cout << timer.getElapsedTime().asSeconds() << std::endl;
+        //std::cout << timer.getElapsedTime().asSeconds() << std::endl;
         while(m_Window.pollEvent(event))
         {
             //if close button pressed, close

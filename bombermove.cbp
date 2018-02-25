@@ -65,6 +65,8 @@
 		<Unit filename="Engine.h" />
 		<Unit filename="Engine.hpp" />
 		<Unit filename="Input.cpp" />
+		<Unit filename="LevelMaker.cpp" />
+		<Unit filename="LevelMaker.h" />
 		<Unit filename="RCintoCoor.cpp" />
 		<Unit filename="RCintoCoor.h" />
 		<Unit filename="Update.cpp" />

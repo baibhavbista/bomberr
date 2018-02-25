@@ -9,16 +9,17 @@ LevelMaker::LevelMaker()
     }
     char ch;
     int c = 0;
-    while(!level)
+    while(level>>ch)
     {
-        level.get(ch);
+
         if(ch==','||ch=='\n')
             continue;
         else
         {
             if(ch=='1')
             {
-                vBlocksBreakable.push_back(Breakeable(c/8,c%8));
+                std::cout << "(" << c/17 << ", " << c%17 << ")" <<std::endl;
+                vBlocksBreakable.push_back(Breakeable(c/17,c%17));
             }
             c++;
         }

@@ -18,5 +18,6 @@ public:
     Breakeable(int ro, int co, int pow_up=0);
     bool isBroken();
     IntRect getIntRect();
+    Vector2f getPosition();
     Sprite getSprite();
 };

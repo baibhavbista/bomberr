@@ -10,6 +10,11 @@ bool Breakeable::isBroken()
     return m_broken;
 }
 
+Vector2f Breakeable::getPosition()
+{
+    return rcIntoCoor(m_r, m_c);
+}
+
 IntRect Breakeable::getIntRect()
 {
     Vector2f coor_tr = rcIntoCoor(m_r, m_c);
