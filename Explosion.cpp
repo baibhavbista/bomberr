@@ -1,6 +1,7 @@
 #include "Explosion.h"
 #include "Bomb.h"
 #include "Engine.h"
+
 int random()
 {
     int random1 = rand()%20;
@@ -17,33 +18,33 @@ int random()
 
 void Explosion::destroyBombsInCell(Vector2i currCell)
 {
-    for(int i = 0; i < int((*pvBombs).size()); i++)
+    for(int i = 0; i < int((m_pEngine->m_vBombs).size()); i++)
     {
-        Vector2i other_bomb_cell = (*pvBombs)[i].getCell();
-        if(other_bomb_cell.x == currCell.x && other_bomb_cell.y == currCell.y && !(((*pvBombs)[i]).isBlasted()))
-            ((*pvBombs)[i]).blast();
+        Vector2i other_bomb_cell = ((m_pEngine->m_vBombs))[i].getCell();
+        if(other_bomb_cell.x == currCell.x && other_bomb_cell.y == currCell.y && !(((m_pEngine->m_vBombs))[i].isBlasted()))
+            ((m_pEngine->m_vBombs)[i]).blast();
     }
 }
 
 void Explosion::killPlayerinCell(Vector2i currCell)
 {
-    Vector2i bomberCell = Engine::m_PBomber->getRCVector();
+    Vector2i bomberCell = m_pEngine->m_PBomber->getRCVector();
     if(bomberCell.x==currCell.x && bomberCell.y == currCell.y)
     {
-        m_PBomber->die();
+        m_pEngine->m_PBomber->die();
     }
-    bomberCell = m_PBomber0->getRCVector();
+    bomberCell = m_pEngine->m_PBomber0->getRCVector();
     if(bomberCell.x==currCell.x && bomberCell.y == currCell.y)
     {
-        m_PBomber0->die();
+        m_pEngine->m_PBomber0->die();
     }
 }
 
 bool Explosion::randomPowerUpDestroy(Vector2i currCell)
 {
-    if((*Level)[currCell.x][currCell.y]==1)
+    if((m_pEngine->Level)[currCell.x][currCell.y]==1)
     {
-        (*Level)[currCell.x][currCell.y] = random();
+        (m_pEngine->Level)[currCell.x][currCell.y] = random();
         return true;
     }
     return false;
@@ -56,7 +57,7 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
     {
         currCell.x += unitVector.x;
         currCell.y += unitVector.y;
-        if(currCell.y<0 ||currCell.x < 0 || currCell.x > 10 ||currCell.y > 16||(*Level)[currCell.x][currCell.y]==2)
+        if(currCell.y<0 ||currCell.x < 0 || currCell.x > 10 ||currCell.y > 16||(m_pEngine->Level)[currCell.x][currCell.y]==2)
             break;
 
         destroyBombsInCell(currCell);
@@ -66,8 +67,8 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
     }
 }
 
-Explosion::Explosion(Engine* pEngine, Vector2i start_cell, int blast_range, std::vector< std::vector<int> >* Levell, std::vector<Bomb>* pvbombs):
-        m_startCell(start_cell), m_blastRange(blast_range), Level(Levell), pvBombs(pvbombs)
+Explosion::Explosion(Engine* pEngine, Vector2i start_cell, int blast_range):
+        m_startCell(start_cell), m_blastRange(blast_range)
 {
     m_pEngine = pEngine;
     explodeDirection(m_startCell, Vector2i(0, -1));

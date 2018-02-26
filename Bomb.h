@@ -7,9 +7,11 @@
 
 using namespace sf;
 class Bomber;
+class Engine;
 class Bomb
 {
 private:
+    Engine* m_pEngine;
     Vector2i cell;
     std::vector<Bomb>* m_pvBombs;
     std::vector< std::vector<int> >* Level;
@@ -24,7 +26,7 @@ private:
     Animation m_bombAnimation;
 
 public:
-    Bomb(std::vector< std::vector<int> >* Levell, Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time, std::vector<Bomb>* pvBombs);
+    Bomb(Engine* pEngine, Bomber* pBomber, Vector2f position, int range, sf::Time start_time);
     AnimatedSprite getSprite();
     void update(Time dt, Time time);
     Vector2i getCell();

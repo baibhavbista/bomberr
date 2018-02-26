@@ -1,24 +1,24 @@
-
-#include "bomb.h"
-#include "bomber.h"
+#include "Engine.h"
+#include "Bomb.h"
+#include "Bomber.h"
 #include "RCintoCoor.h"
 
 #include "Explosion.h"
 
-Bomb::Bomb(std::vector< std::vector<int> >* Levell,Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time, std::vector<Bomb>* pvBombs):
-    m_Texture(texture_bomb), m_Sprite(sf::seconds(0.8), true, false)
+Bomb::Bomb(Engine* pEngine, Bomber* pBomber, Vector2f position, int range, sf::Time start_time):
+    m_pEngine(pEngine), m_Texture(m_pEngine->m_BombTexture), m_Sprite(sf::seconds(0.8), true, false), m_pvBombs()
 {
     cell = coorToRc(position);
-    Level = Levell;
+    Level = &(m_pEngine->Level);
     m_blasted = false;
-    m_pvBombs = pvBombs;
+    m_pvBombs = &(m_pEngine->m_vBombs);
 
     m_pBomber = pBomber;
     m_Position = position;
     m_range = range;
     m_startTime = start_time;
     IntRect m_RectSourceSprite = IntRect(0, 0, 32, 32);
-    m_bombAnimation.setSpriteSheet(texture_bomb);
+    m_bombAnimation.setSpriteSheet(m_Texture);
     for(int i = 0; i < 7; i++)
     {
         m_bombAnimation.addFrame(m_RectSourceSprite);
@@ -51,7 +51,7 @@ void Bomb::update(Time dt, Time time)
 void Bomb::blast()
 {
     m_blasted = true;
-    Explosion(cell, m_range, Level, m_pvBombs);
+    Explosion(m_pEngine, cell, m_range);
     m_pBomber->m_numBombs++;
 
     for(auto a:*Level)

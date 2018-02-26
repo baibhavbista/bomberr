@@ -52,9 +52,8 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
     //Vector that represents sprite dimensions in sprite sheet (for players/bombers)
     Vector2f spriteDim(768/12, 384/6);
     //m_pvBomber.push_back()
-    m_PBomber = new Bomber(&Level, m_PlayerTexture, m_BombTexture, spriteDim, 1, m_pvBombs);
-    m_PBomber0 = new Bomber(&Level, m_PlayerTexture, m_BombTexture, spriteDim, 0, m_pvBombs);
-
+    m_PBomber = new Bomber(this, m_PlayerTexture, spriteDim, 1);
+    m_PBomber0 = new Bomber(this, m_PlayerTexture, spriteDim, 0);
 }
 
 void Engine::start()

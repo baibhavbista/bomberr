@@ -19,6 +19,7 @@ class Bomber
 {
 private:
 
+    Engine* m_pEngine;
     //this vector holds the x and y position of the sprite
     Vector2f m_Position;
 
@@ -60,7 +61,8 @@ public:
     //Color of the bomber. 0 White, 1 Black, 2 Blue, 3 Red
     int m_color;
 
-    Bomber(std::vector< std::vector<int> >* Levell,  Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs);
+    Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int color);
+
 
     //gives position vector of the sprite
     IntRect getCollisionRect();

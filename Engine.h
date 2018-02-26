@@ -55,6 +55,8 @@ public:
 
 
     Engine();
+    friend class Bomber;
+    friend class Bomb;
     friend class Explosion;
     //runs game loop , calls input, update, draw within the loop
     void start();
