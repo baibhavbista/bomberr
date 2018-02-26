@@ -29,12 +29,14 @@ void Explosion::destroyBombsInCell(Vector2i currCell)
 
 }*/
 
-void Explosion::randomPowerUpDestroy(Vector2i currCell)
+bool Explosion::randomPowerUpDestroy(Vector2i currCell)
 {
-    if((*Level)[currCell.x][currCell.y]!=0)
+    if((*Level)[currCell.x][currCell.y]==1)
     {
         (*Level)[currCell.x][currCell.y] = random();
+        return true;
     }
+    return false;
 }
 
 void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
@@ -44,10 +46,12 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
     {
         currCell.x += unitVector.x;
         currCell.y += unitVector.y;
-        if(currCell.y<0 ||currCell.x < 0 || currCell.x > 10 ||currCell.y > 16 || (*Level)[currCell.x][currCell.y]==2)
+        if(currCell.y<0 ||currCell.x < 0 || currCell.x > 10 ||currCell.y > 16||(*Level)[currCell.x][currCell.y]==2)
             break;
+
         destroyBombsInCell(currCell);
-        randomPowerUpDestroy(currCell);
+        if(randomPowerUpDestroy(currCell))
+            break;
         std::cout << currCell.x << " " << currCell.y << std::endl;
     }
 }
