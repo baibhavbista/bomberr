@@ -34,13 +34,13 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
 
     m_ExplosionTexture.loadFromFile("sprites/explosion.png");
 
-    m_ExplosionSprite = new Sprite[3];
-    m_ExplosionSprite[0].setTexture(m_ExplosionTexture);
-    m_ExplosionSprite[0].setTextureRect(IntRect(0, 0, 32, 32));
-    m_ExplosionSprite[1].setTexture(m_ExplosionTexture);
-    m_ExplosionSprite[1].setTextureRect(IntRect(32, 0, 32, 32));
-    m_ExplosionSprite[2].setTexture(m_ExplosionTexture);
-    m_ExplosionSprite[2].setTextureRect(IntRect(64, 0, 32, 32));
+    m_ExplosionSprite = new Sprite[7];
+    for(int i = 0; i < 7; i++)
+    {
+        m_ExplosionSprite[i].setTexture(m_ExplosionTexture);
+        m_ExplosionSprite[i].setTextureRect(IntRect(32*i, 0, 32, 32));
+    }
+
     //frame texture and sprite
 
     m_FrameTexture.loadFromFile("sprites/frame.png");
