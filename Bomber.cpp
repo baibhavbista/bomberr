@@ -18,7 +18,7 @@ Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int
     m_color = color;
 
     //speed of the bomber in pixels/sec
-    m_Speed = 100;
+    m_Speed = 80;
 
     //Starting positions
     //if player(color) 0, start at top left

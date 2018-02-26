@@ -59,6 +59,7 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
         currCell.y += unitVector.y;
         if(currCell.y<0 ||currCell.x < 0 || currCell.x > 10 ||currCell.y > 16||(m_pEngine->Level)[currCell.x][currCell.y]==2)
             break;
+        //explosionHelper.push_back(make_tuple())
         if(randomPowerUpDestroy(currCell))
             break;
         killPlayerinCell(currCell);
@@ -69,6 +70,7 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
 Explosion::Explosion(Engine* pEngine, Vector2i start_cell, int blast_range):
         m_startCell(start_cell), m_blastRange(blast_range)
 {
+
     m_pEngine = pEngine;
     killPlayerinCell(m_startCell);
     destroyBombsInCell(m_startCell);

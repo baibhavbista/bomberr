@@ -1,9 +1,9 @@
 
-
 #include "Level.h"
 #include "Bomb.h"
 #include "Bomber.h"
 #include "RCintoCoor.h"
+#include <tuple>
 
 class Engine
 {
@@ -13,12 +13,16 @@ private:
     RenderWindow m_Window;
 
     std::vector < std::vector<int> > Level;
+
+    std::tuple<Time, int, Vector2f> explosionHelper;
      //LevelMaker m_level;
 
+    Clock clock;
     //textures for the background, players,(.png found inside backgrounds and sprites folders)
     Texture m_BackgroundTexture;
     Texture m_FrameTexture;
     Texture m_BlockTexture;
+    Texture m_SolidBlockTexture;
     Texture m_PlayerTexture;
     Texture m_BombTexture;
     Texture m_PowerTexture5;
@@ -30,6 +34,7 @@ private:
     Sprite m_BackgroundSprite;
     Sprite m_FrameSprite;
     Sprite m_BlockSprite;
+    Sprite m_SolidBlockSprite;
     Sprite m_PowerSprite5;
     Sprite m_PowerSprite6;
     Sprite m_PowerSprite7;

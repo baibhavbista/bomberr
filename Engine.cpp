@@ -1,4 +1,5 @@
 #include "Engine.h"
+
 using namespace sf;
 
 Engine::Engine():Level(11, std::vector<int> (17, 0) )
@@ -19,7 +20,8 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
     m_BlockTexture.loadFromFile("sprites/breakable.png");
     m_BlockSprite.setTexture(m_BlockTexture);
 
-
+    m_SolidBlockTexture.loadFromFile("sprites/solid.png");
+    m_SolidBlockSprite.setTexture(m_SolidBlockTexture);
 
     m_PowerTexture5.loadFromFile("sprites/5.png");
     m_PowerSprite5.setTexture(m_PowerTexture5);
@@ -65,7 +67,6 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
 
 void Engine::start()
 {
-    Clock clock;
     Vector2f prev(768/12, 384/6);
     Clock timer;
     while(m_Window.isOpen())

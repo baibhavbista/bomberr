@@ -23,7 +23,12 @@ void Engine::draw()
                 m_BlockSprite.setPosition(coor_tr);
                 m_Window.draw(m_BlockSprite);
             }
-
+            else if((Level)[r][c] == 2)
+            {
+                coor_tr = rcIntoCoor(r,c);
+                m_SolidBlockSprite.setPosition(coor_tr);
+                m_Window.draw(m_SolidBlockSprite);
+            }
             else if((Level)[r][c] == 4)
             {
                 coor_tr = rcIntoCoor(r,c);
