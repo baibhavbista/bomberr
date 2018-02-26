@@ -12,6 +12,28 @@ void Engine::update(Time dt, Time t)
             (*m_pvBombs)[i].update(dt, t);
         }
     }
+    /*for(int r = 0; r < 11; r++)
+    {
+        for(int c = 0; c < 17; c++)
+        {
+            if(Level[r][c]>=70 && Level[r][c]< 100)
+            {
+                Level[r][c] -= 70;
+            }
+            if(Level[r][c]>= 100)
+            {
+                Level[r][c] -= 100;
+            }
+        }
+    }
+    Vector2i loc_player = m_PBomber0->getRCVector();
+    Level[loc_player.x][loc_player.] += 70;
+    //std::cout << "player 0 set" << std::endl;
+    loc_player = m_PBomber->getRCVector();
+    Level[loc_player.x][loc_player.y] += 100;
+    */
+
+
 
 }
 

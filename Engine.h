@@ -37,7 +37,6 @@ private:
     Bomber* m_PBomber;
     Bomber* m_PBomber0;
 
-    bool bombWasPressed[2];
 
     Event event;
 

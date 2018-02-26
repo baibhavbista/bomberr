@@ -48,4 +48,6 @@ Explosion::Explosion(Vector2i start_cell, int blast_range, std::vector< std::vec
         std::cout << currCell.x << " " << currCell.y << std::endl;
     }
 
+
+
 }

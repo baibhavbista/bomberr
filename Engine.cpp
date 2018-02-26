@@ -43,8 +43,6 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
     m_PBomber = new Bomber(&Level, m_PlayerTexture, m_BombTexture, spriteDim, 1, m_pvBombs);
     m_PBomber0 = new Bomber(&Level, m_PlayerTexture, m_BombTexture, spriteDim, 0, m_pvBombs);
 
-    bombWasPressed[0] = false;
-    bombWasPressed[1] = false;
 }
 
 void Engine::start()

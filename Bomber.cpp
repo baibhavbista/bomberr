@@ -105,7 +105,7 @@ bool Bomber::noKeyPressed()
 void Bomber::update(Time dt)
 {
 
-    std::cout <<"Position bomber " <<m_color << " "<< getRCVector().x << " " << getRCVector().y << std::endl;
+    //std::cout <<"Position bomber " <<m_color << " "<< getRCVector().x << " " << getRCVector().y << std::endl;
     float elapsedTime = dt.asSeconds();
     if(m_RightPressed)
     {
