@@ -24,13 +24,32 @@ void Engine::draw()
                 m_Window.draw(m_BlockSprite);
             }
 
-            if((Level)[r][c] == 4)
+            else if((Level)[r][c] == 4)
             {
                 coor_tr = rcIntoCoor(r,c);
                 Sprite bomb(m_BombTexture, IntRect(0, 0, 32, 32));
                 bomb.setPosition(coor_tr);
                 m_Window.draw(bomb);
             }
+            else if((Level)[r][c] == 5)
+            {
+                coor_tr = rcIntoCoor(r,c);
+                m_PowerSprite5.setPosition(coor_tr);
+                m_Window.draw(m_PowerSprite5);
+            }
+            else if((Level)[r][c] == 6)
+            {
+                coor_tr = rcIntoCoor(r,c);
+                m_PowerSprite6.setPosition(coor_tr);
+                m_Window.draw(m_PowerSprite6);
+            }
+            else if((Level)[r][c] == 7)
+            {
+                coor_tr = rcIntoCoor(r,c);
+                m_PowerSprite7.setPosition(coor_tr);
+                m_Window.draw(m_PowerSprite7);
+            }
+
         }
     }
 

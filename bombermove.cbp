@@ -51,6 +51,7 @@
 			<Add library="gdi32" />
 			<Add directory="C:/Program Files (x86)/CodeBlocks/SFML-2.4.2/lib" />
 		</Linker>
+		<Unit filename="../../bomberr/Explosion.cpp" />
 		<Unit filename="AnimatedSprite.cpp" />
 		<Unit filename="AnimatedSprite.hpp" />
 		<Unit filename="Animation.cpp" />

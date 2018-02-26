@@ -21,11 +21,17 @@ private:
     Texture m_BlockTexture;
     Texture m_PlayerTexture;
     Texture m_BombTexture;
+    Texture m_PowerTexture5;
+    Texture m_PowerTexture6;
+    Texture m_PowerTexture7;
 
     //normal sprite for Background
     Sprite m_BackgroundSprite;
     Sprite m_FrameSprite;
     Sprite m_BlockSprite;
+    Sprite m_PowerSprite5;
+    Sprite m_PowerSprite6;
+    Sprite m_PowerSprite7;
 
     std::vector<Bomb>* m_pvBombs;
     std::vector<Bomb> m_vBombs;
@@ -44,7 +50,7 @@ private:
     void input(Time t);
     void update(Time dt, Time t);
     void draw();
-
+    void PowerupCheck(Bomber* m_PBomber);
 public:
 
 

@@ -7,6 +7,7 @@
 using namespace sf;
 
 class Bomb;
+class Engine;
 
 //global variables for the IntRect corresponding to walls
 const IntRect TOPWALL(0, 0, 608, 94);
@@ -55,6 +56,7 @@ private:
 
 public:
     friend Bomb;
+    friend Engine;
     //Color of the bomber. 0 White, 1 Black, 2 Blue, 3 Red
     int m_color;
 

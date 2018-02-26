@@ -16,8 +16,20 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
     m_BackgroundTexture.loadFromFile("backgrounds/back.png");
     m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
-    m_BlockTexture.loadFromFile("Sprites/breakable.png");
+    m_BlockTexture.loadFromFile("sprites/breakable.png");
     m_BlockSprite.setTexture(m_BlockTexture);
+
+
+
+    m_PowerTexture5.loadFromFile("sprites/5.png");
+    m_PowerSprite5.setTexture(m_PowerTexture5);
+
+    m_PowerTexture6.loadFromFile("sprites/6.png");
+    m_PowerSprite6.setTexture(m_PowerTexture6);
+
+    m_PowerTexture7.loadFromFile("sprites/7.png");
+    m_PowerSprite7.setTexture(m_PowerTexture7);
+
     //frame texture and sprite
 
     m_FrameTexture.loadFromFile("sprites/frame.png");

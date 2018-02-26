@@ -67,7 +67,6 @@ bool Bomber::collide(std::vector< std::vector<int> >* (Level))
                     return true;
                 }
             }
-
         }
     }
 /*
