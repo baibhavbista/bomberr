@@ -5,7 +5,7 @@
 using namespace sf;
 
 //total number of asset sets
-const int NUM_ASSETS = 1;
+const int NUM_ASSETS = 2;
 const int NUM_LEVELS = 2;
 int random(int maxi)
 {
@@ -16,7 +16,7 @@ int random(int maxi)
 }
 
 
-Engine::Engine():Level(11, std::vector<int> (17, 0) )
+Engine::Engine(RenderWindow& window):m_Window(window),Level(11, std::vector<int> (17, 0) )
 {
     //resolution based on size of frame, which is (608, 416).
     m_Window.create(VideoMode(608, 416+65), "Bomber Move");

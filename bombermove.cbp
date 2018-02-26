@@ -69,6 +69,8 @@
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
 		<Unit filename="LevelMaker.h" />
+		<Unit filename="MainMenu.cpp" />
+		<Unit filename="MainMenu.h" />
 		<Unit filename="RCintoCoor.cpp" />
 		<Unit filename="RCintoCoor.h" />
 		<Unit filename="Update.cpp" />

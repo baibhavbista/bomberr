@@ -11,7 +11,7 @@ class Engine
 private:
 
     //main program window
-    RenderWindow m_Window;
+    RenderWindow& m_Window;
 
     std::vector < std::vector<int> > Level;
 
@@ -59,10 +59,10 @@ private:
     void update(Time dt, Time t);
     void draw();
     void PowerupCheck(Bomber* m_PBomber);
+
+
 public:
-
-
-    Engine();
+    Engine(RenderWindow& window);
     friend class Bomber;
     friend class Bomb;
     friend class Explosion;

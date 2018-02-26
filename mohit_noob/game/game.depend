@@ -203,3 +203,15 @@
 	<iostream>
 	"window.h"
 
+1519656160 source:c:\users\baibhavbista\desktop\debug\bomber_no_vector\bomberr\mohit_noob\game\main.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"window.h"
+
+1519656160 c:\users\baibhavbista\desktop\debug\bomber_no_vector\bomberr\mohit_noob\game\window.h
+	<SFML/Graphics.hpp>
+
+1519656160 source:c:\users\baibhavbista\desktop\debug\bomber_no_vector\bomberr\mohit_noob\game\window.cpp
+	<iostream>
+	"window.h"
+
