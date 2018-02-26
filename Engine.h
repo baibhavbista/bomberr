@@ -24,6 +24,7 @@ private:
     Texture m_PowerTexture5;
     Texture m_PowerTexture6;
     Texture m_PowerTexture7;
+    Texture m_ExplosionTexture;
 
     //normal sprite for Background
     Sprite m_BackgroundSprite;
@@ -32,6 +33,10 @@ private:
     Sprite m_PowerSprite5;
     Sprite m_PowerSprite6;
     Sprite m_PowerSprite7;
+
+    Sprite m_ExplosionSpriteStart;
+    Sprite m_ExplosionSpriteY;
+    Sprite m_ExplosionSpriteX;
 
     std::vector<Bomb>* m_pvBombs;
     std::vector<Bomb> m_vBombs;
@@ -60,4 +65,5 @@ public:
     friend class Explosion;
     //runs game loop , calls input, update, draw within the loop
     void start();
+    void gameOver();
 };

@@ -64,9 +64,17 @@ void Engine::draw()
             m_Window.draw(m_BlockSprite);
         }
     }*/
-
+    AnimatedSprite dispSprite;
+    for(int i = 0; i < int((*m_pvBombs).size()); i++)
+    {
+        if(!((*m_pvBombs)[i]).isBlasted())
+        {
+            dispSprite = (*m_pvBombs)[i].getSprite();
+            m_Window.draw(dispSprite);
+        }
+    }
     //draw player 0, upscaled 1.2
-    AnimatedSprite dispSprite = (m_PBomber0->getSprite());
+    dispSprite = (m_PBomber0->getSprite());
     //dispSprite.setScale(0.8, 0.8);
 
     m_Window.draw(dispSprite);
@@ -76,15 +84,7 @@ void Engine::draw()
     //dispSprite.setScale(0.8, 0.8);
     m_Window.draw(dispSprite);
 
-    for(int i = 0; i < int((*m_pvBombs).size()); i++)
-    {
-        if(!((*m_pvBombs)[i]).isBlasted())
-        {
-            dispSprite = (*m_pvBombs)[i].getSprite();
-            m_Window.draw(dispSprite);
-        }
-    }
-    //m_Window.draw(immovable_block);
+
     //display the window
     m_Window.display();
 }

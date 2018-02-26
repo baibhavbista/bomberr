@@ -17,7 +17,20 @@ Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int
     //color of the bomber
     m_color = color;
 
+    //speed of the bomber in pixels/sec
+    m_Speed = 100;
 
+    //Starting positions
+    //if player(color) 0, start at top left
+    //if player 1, start at bottom right
+    // TODO
+    //set to correct values after hud and walls
+    if(color==0)
+        m_Position = Vector2f(rcIntoCoor(0, 0).x-22, rcIntoCoor(0, 0).y-32) ;
+    else
+        m_Position = Vector2f(rcIntoCoor(10, 16).x-22, rcIntoCoor(10, 16).y-32);
+    //m_Position.x = (color==0)?(52-spriteDim.x/2):(567-spriteDim.x/2);
+    //m_Position.y = (color==0)?(126-spriteDim.y/2):(421-spriteDim.y/2);
     m_spriteDim = spriteDim;
 
     //two IntRect which denote sprite location in spritesheet
@@ -69,16 +82,7 @@ Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int
     //set the pointer currentAnimation to down as the starting default
     currentAnimation = &walkingAnimationDown;
 
-    //speed of the bomber in pixels/sec
-    m_Speed = 200;
 
-    //Starting positions
-    //if player(color) 0, start at top left
-    //if player 1, start at bottom right
-    // TODO
-    //set to correct values after hud and walls
-    m_Position.x = (color==0)?(52-spriteDim.x/2):(567-spriteDim.x/2);
-    m_Position.y = (color==0)?(126-spriteDim.y/2):(421-spriteDim.y/2);
 
 }
 
@@ -92,7 +96,12 @@ AnimatedSprite Bomber::getSprite()
 Vector2i Bomber::getRCVector()
 {
     Vector2f Position =m_Sprite.getPosition();
-    Position = coorIntoGood(Vector2f(Position.x + 15, Position.y + 15));
+    if(currentAnimation == &walkingAnimationDown || currentAnimation == &walkingAnimationUp)
+        Position = coorIntoGood(Vector2f(Position.x + 22, Position.y + 32));
+    else if(currentAnimation == &walkingAnimationLeft)
+        Position = coorIntoGood(Vector2f(Position.x + 28, Position.y + 35.2));
+    else
+        Position = coorIntoGood(Vector2f(Position.x + 25.6, Position.y + 34.4));
     return coorToRc(Position);
 }
 
@@ -194,7 +203,7 @@ void Bomber::dropBomb(Time start_time)
         Vector2f Position =m_Sprite.getPosition();
         Position = coorIntoGood(Vector2f(Position.x + 15, Position.y + 15));
         Vector2i rc = coorToRc(Position);
-        std::cout << rc.x << " " << rc.y << std::endl;
+        std::cout << "Bomb location" << rc.x << " " << rc.y << std::endl;
         /*if(currentAnimation==&walkingAnimationDown)
             Position.x += 1;
         else if(currentAnimation==&walkingAnimationUp)
@@ -218,6 +227,8 @@ void Bomber::die()
 {
     m_lives--;
     std::cout <<"died: " << (m_lives) << "lives left" << std::endl;
+    if(m_lives==0)
+        m_pEngine->gameOver();
 }
 
 

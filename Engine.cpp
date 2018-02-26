@@ -30,6 +30,13 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
     m_PowerTexture7.loadFromFile("sprites/7.png");
     m_PowerSprite7.setTexture(m_PowerTexture7);
 
+    m_ExplosionTexture.loadFromFile("sprites/explosion.png");
+    m_ExplosionSpriteStart.setTexture(m_ExplosionTexture);
+    m_ExplosionSpriteStart.setTextureRect(IntRect(0, 0, 32, 32));
+    m_ExplosionSpriteY.setTexture(m_ExplosionTexture);
+    m_ExplosionSpriteY.setTextureRect(IntRect(32, 0, 32, 32));
+    m_ExplosionSpriteX.setTexture(m_ExplosionTexture);
+    m_ExplosionSpriteX.setTextureRect(IntRect(64, 0, 32, 32));
     //frame texture and sprite
 
     m_FrameTexture.loadFromFile("sprites/frame.png");
@@ -64,20 +71,18 @@ void Engine::start()
     while(m_Window.isOpen())
     {
         //std::cout << timer.getElapsedTime().asSeconds() << std::endl;
-        /*while(m_Window.pollEvent(event))
-        {
-            //if close button pressed, close
-            if(event.type==Event::Closed)
-            {
-                m_Window.close();
-            }
-        }*/
+
         //save elapsed time since last loop to dt(minuscule time) and restart the clock
         Time dt = clock.restart();
         input(timer.getElapsedTime());
         update(dt, timer.getElapsedTime());
         draw();
     }
+}
+
+void Engine::gameOver()
+{
+    //nothing yet
 }
 
 
