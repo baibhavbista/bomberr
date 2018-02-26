@@ -14,13 +14,13 @@ private:
     std::vector<Bomb>* m_pvBombs;
     std::vector< std::vector<int> >* Level;
     Vector2f m_Position;
+    Texture& m_Texture;
     AnimatedSprite m_Sprite;
     Bomber* m_pBomber;
     bool m_blasted;
     int m_range;
     sf::Time m_startTime;
     const int m_timeForBlast = 3.5;
-    Texture& m_Texture;
     Animation m_bombAnimation;
 
 public:

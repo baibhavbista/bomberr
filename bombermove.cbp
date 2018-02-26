@@ -63,6 +63,8 @@
 		<Unit filename="Draw.cpp" />
 		<Unit filename="Engine.cpp" />
 		<Unit filename="Engine.h" />
+		<Unit filename="Explosion.cpp" />
+		<Unit filename="Explosion.h" />
 		<Unit filename="Input.cpp" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />

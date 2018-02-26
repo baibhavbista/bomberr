@@ -1,7 +1,7 @@
 #include "Engine.h"
 using namespace sf;
 
-Engine::Engine(std::vector<Bomb>* pm_vBombs):Level(11, std::vector<int> (17, 0) )
+Engine::Engine():Level(11, std::vector<int> (17, 0) )
 {
     //resolution based on size of frame, which is (608, 416).
     m_Window.create(VideoMode(608, 416+65), "Bomber Move");
@@ -25,6 +25,7 @@ Engine::Engine(std::vector<Bomb>* pm_vBombs):Level(11, std::vector<int> (17, 0) 
 
     m_FrameSprite.setTexture(m_FrameTexture);
     m_FrameSprite.setPosition(0, 65);
+    m_pvBombs = &m_vBombs;
 
 /*    m_plevel = new LevelMaker();
     m_pvBlocksBreakable = m_plevel->getVBlocksBreakable();*/
@@ -34,7 +35,6 @@ Engine::Engine(std::vector<Bomb>* pm_vBombs):Level(11, std::vector<int> (17, 0) 
     m_PlayerTexture.loadFromFile("sprites/player.png");
     m_BombTexture.loadFromFile("sprites/bombs.png");
 
-    m_pvBombs = pm_vBombs;
 
 
     //Vector that represents sprite dimensions in sprite sheet (for players/bombers)
@@ -50,7 +50,6 @@ Engine::Engine(std::vector<Bomb>* pm_vBombs):Level(11, std::vector<int> (17, 0) 
 void Engine::start()
 {
     Clock clock;
-    Event event;
     Vector2f prev(768/12, 384/6);
     Clock timer;
     while(m_Window.isOpen())

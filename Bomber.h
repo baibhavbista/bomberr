@@ -4,7 +4,6 @@
 #include "AnimatedSprite.hpp"
 #include "Animation.hpp"
 #include <vector>
-#include "Breakeable.h"=
 using namespace sf;
 
 class Bomb;
@@ -27,6 +26,7 @@ private:
     //num of bombs
     int m_numBombs;
     int m_bombRange;
+    int m_lives;
     //booleans that are set when have to move in a certain direction
     bool m_LeftPressed;
     bool m_RightPressed;
@@ -67,6 +67,8 @@ public:
     //called by Engine::draw() to draw on the screen
     AnimatedSprite getSprite();
 
+    Vector2i getRCVector();
+
     //returns true if no key(movement key) is pressed. Used in update function above to stop
     bool noKeyPressed();
 
@@ -89,4 +91,6 @@ public:
     void stop();
 
     void dropBomb(Time start_time);
+
+    void die();
 };

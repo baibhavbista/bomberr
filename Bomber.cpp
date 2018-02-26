@@ -1,12 +1,14 @@
 
 #include "Bomb.h"
 #include "Bomber.h"
+#include "RCintoCoor.h"
 
 using namespace sf;
 
 Bomber::Bomber(std::vector< std::vector<int> >* Levell, Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs):
     Level(Levell), m_TextureBomb(texture_bomb), m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
 {
+    m_lives = 3;
     m_pvBombs = pvBombs;
     m_numBombs = 3;
     m_bombRange = 1;
@@ -86,6 +88,13 @@ AnimatedSprite Bomber::getSprite()
     return m_Sprite;
 }
 
+Vector2i Bomber::getRCVector()
+{
+    Vector2f Position =m_Sprite.getPosition();
+    Position = coorIntoGood(Vector2f(Position.x + 15, Position.y + 15));
+    return coorToRc(Position);
+}
+
 //returns true if no key(movement key) is pressed. Used in update function above to stop
 bool Bomber::noKeyPressed()
 {
@@ -95,6 +104,8 @@ bool Bomber::noKeyPressed()
 //function that updates m_Sprite(animation, position, continue or stop, etc)
 void Bomber::update(Time dt)
 {
+
+    std::cout <<"Position bomber " <<m_color << " "<< getRCVector().x << " " << getRCVector().y << std::endl;
     float elapsedTime = dt.asSeconds();
     if(m_RightPressed)
     {
@@ -201,3 +212,11 @@ void Bomber::dropBomb(Time start_time)
         }
     }
 }
+
+void Bomber::die()
+{
+    m_lives--;
+    std::cout <<"died: " << (m_lives) << "lives left" << std::endl;
+}
+
+

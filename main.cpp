@@ -3,9 +3,7 @@
 
 int main()
 {
-    std::vector<Bomb> m_vBombs;
-
-    Engine engine(&m_vBombs);
+    Engine engine;
     engine.start();
     return 0;
 }

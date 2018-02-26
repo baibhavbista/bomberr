@@ -57,7 +57,7 @@ void Engine::draw()
     //dispSprite.setScale(0.8, 0.8);
     m_Window.draw(dispSprite);
 
-    for(int i = 0; i < (*m_pvBombs).size(); i++)
+    for(int i = 0; i < int((*m_pvBombs).size()); i++)
     {
         if(!((*m_pvBombs)[i]).isBlasted())
         {

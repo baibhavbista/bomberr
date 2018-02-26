@@ -35,7 +35,6 @@ AnimatedSprite Bomb::getSprite()
 
 void Bomb::update(Time dt, Time time)
 {
-    float dTime = dt.asSeconds();
     float totalTime = time.asSeconds();
     m_Sprite.play(m_bombAnimation);
     m_Sprite.setPosition(m_Position);
@@ -49,14 +48,15 @@ void Bomb::blast()
     m_blasted = true;
     Explosion(cell, m_range, Level, m_pvBombs);
     m_pBomber->m_numBombs++;
-    for(auto a:*Level)
+
+    /*for(auto a:*Level)
     {
         for(auto b:a)
         {
             std::cout << b << " ";
         }
         std::cout << std::endl;
-    }
+    }*/
 }
 
 bool Bomb::isBlasted()

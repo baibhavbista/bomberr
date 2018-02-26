@@ -3,6 +3,7 @@
 #include "Level.h"
 #include "Bomb.h"
 #include "Bomber.h"
+#include "RCintoCoor.h"
 
 class Engine
 {
@@ -27,6 +28,7 @@ private:
     Sprite m_BlockSprite;
 
     std::vector<Bomb>* m_pvBombs;
+    std::vector<Bomb> m_vBombs;
 
     //LevelMaker* m_plevel;
     //std::vector<Breakeable>* m_pvBlocksBreakable;
@@ -46,9 +48,8 @@ private:
 
 public:
 
-    //std::vector<Breakeable>* pVBlocksBreakable;
 
-    Engine(std::vector<Bomb>* pm_vBombs);
+    Engine();
 
     //runs game loop , calls input, update, draw within the loop
     void start();
