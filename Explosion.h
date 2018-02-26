@@ -14,6 +14,7 @@ private:
     void destroyBombsInCell(Vector2i currCell);
     bool randomPowerUpDestroy(Vector2i currCell);
     void explodeDirection(Vector2i startCell, Vector2i unitVector);
+    void killPlayerinCell(Vector2i currCell);
 
 
 public:

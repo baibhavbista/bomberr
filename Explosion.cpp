@@ -1,5 +1,6 @@
 #include "Explosion.h"
 #include "Bomb.h"
+#include "Engine.h"
 int random()
 {
     int random1 = rand()%20;
@@ -24,10 +25,19 @@ void Explosion::destroyBombsInCell(Vector2i currCell)
     }
 }
 
-/*void Explosion::killPlayerinCell(Vector2i currCell)
+void Explosion::killPlayerinCell(Vector2i currCell)
 {
-
-}*/
+    Vector2i bomberCell = Engine::m_PBomber->getRCVector();
+    if(bomberCell.x==currCell.x && bomberCell.y == currCell.y)
+    {
+        m_PBomber->die();
+    }
+    bomberCell = m_PBomber0->getRCVector();
+    if(bomberCell.x==currCell.x && bomberCell.y == currCell.y)
+    {
+        m_PBomber0->die();
+    }
+}
 
 bool Explosion::randomPowerUpDestroy(Vector2i currCell)
 {
@@ -56,10 +66,10 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
     }
 }
 
-Explosion::Explosion(Vector2i start_cell, int blast_range, std::vector< std::vector<int> >* Levell, std::vector<Bomb>* pvbombs):
+Explosion::Explosion(Engine* pEngine, Vector2i start_cell, int blast_range, std::vector< std::vector<int> >* Levell, std::vector<Bomb>* pvbombs):
         m_startCell(start_cell), m_blastRange(blast_range), Level(Levell), pvBombs(pvbombs)
 {
-
+    m_pEngine = pEngine;
     explodeDirection(m_startCell, Vector2i(0, -1));
     explodeDirection(m_startCell, Vector2i(0, +1));
     explodeDirection(m_startCell, Vector2i(+1, 0));
