@@ -61,10 +61,11 @@ void Engine::draw()
     //(m_pEngine->explosionHelper).push_back(std::make_tuple((m_pEngine->clock.getElapsedTime()), num, startCell));
     for(auto tup:explosionHelper)
     {
-        if((*m_pclock).getElapsedTime().asSeconds() - std::get<0>(tup).asSeconds() <= 0.01)
+        if((clock_explo).getElapsedTime().asSeconds() - std::get<0>(tup).asSeconds() <= 1)
         {
-            Sprite temp = m_ExplosionSprite[std::get<1>(tup)];
-            std::cout << (*m_pclock).getElapsedTime().asSeconds() << std::get<2>(tup).x << " " << std::get<2>(tup).y << std::endl;
+            //std::cout << std::get<0>(tup).asSeconds() << " " << std::get<1>(tup) << " (" << std::get<2>(tup).x << ", " <<std::get<2>(tup).y << ")" << std::endl;
+            Sprite temp = m_ExplosionSprite[std::get<1>(tup)-1];
+            //std::cout << (clock_explo).getElapsedTime().asSeconds() << std::get<2>(tup).x << " " << std::get<2>(tup).y << std::endl;
             Vector2f coor = rcIntoCoor(std::get<2>(tup).x, std::get<2>(tup).y);
             //std::cout << coor.x << " " << coor.y << std::endl;
             temp.setPosition(coor);
@@ -73,7 +74,7 @@ void Engine::draw()
     }
     for(int i = 0; i < explosionSprites.size(); i++)
     {
-        //m_Window.draw(explosionSprites[i]);
+        m_Window.draw(explosionSprites[i]);
     }
 
 

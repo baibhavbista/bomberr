@@ -4,7 +4,6 @@ using namespace sf;
 
 Engine::Engine():Level(11, std::vector<int> (17, 0) )
 {
-    m_pclock = &clock;
     //resolution based on size of frame, which is (608, 416).
     m_Window.create(VideoMode(608, 416+65), "Bomber Move");
 
@@ -70,7 +69,7 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
 
 void Engine::start()
 {
-    m_pclock = &clock;
+    Clock clock;
     Vector2f prev(768/12, 384/6);
     Clock timer;
     while(m_Window.isOpen())

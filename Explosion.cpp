@@ -61,8 +61,9 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
             break;
         std::cout << currCell.x << " " << currCell.y << std::endl;
         int num = (unitVector.x==0)?3:2;
-        (m_pEngine->explosionHelper).push_back(std::make_tuple((m_pEngine->clock.getElapsedTime()), num, startCell));
+        (m_pEngine->explosionHelper).push_back(std::make_tuple((m_pEngine->clock_explo.getElapsedTime()), num, currCell));
         //(m_pEngine->explosionHelper).push_back(std::make_tuple((((m_pEngine->clock).getElapsedTime()), num, startCell)));
+//        std::cout <<
         killPlayerinCell(currCell);
         destroyBombsInCell(m_startCell);
         if(randomPowerUpDestroy(currCell))
@@ -76,6 +77,7 @@ Explosion::Explosion(Engine* pEngine, Vector2i start_cell, int blast_range):
 
     m_pEngine = pEngine;
     killPlayerinCell(m_startCell);
+    (m_pEngine->explosionHelper).push_back(std::make_tuple((m_pEngine->clock_explo.getElapsedTime()), 1, m_startCell));
     //destroyBombsInCell(m_startCell);
     explodeDirection(m_startCell, Vector2i(0, -1));
     explodeDirection(m_startCell, Vector2i(0, +1));
