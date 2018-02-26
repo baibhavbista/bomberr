@@ -69,21 +69,7 @@ bool Bomber::collide(std::vector< std::vector<int> >* (Level))
             }
         }
     }
-/*
-    for(int i = 0; i < int((pvBlocksBreakable)->size()); i++)
-    {
-        Breakeable block = ((*pvBlocksBreakable)[i]);
-        IntRect block_rect = block.getIntRect();
-        if(!block.isBroken())
-        {
-            if(Player0.intersects(block_rect))
-            {
-                moveAfterCollision(Player0, block_rect);
-                return true;
-            }
-        }
 
-    }*/
     IntRect wall = TOPWALL;
     if(Player0.intersects(wall))
     {

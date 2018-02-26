@@ -14,67 +14,51 @@ int random()
     }
 }
 
+void Explosion::destroyBombsInCell(Vector2i currCell)
+{
+    for(int i = 0; i < int((*pvBombs).size()); i++)
+    {
+        Vector2i other_bomb_cell = (*pvBombs)[i].getCell();
+        if(other_bomb_cell.x == currCell.x && other_bomb_cell.y == currCell.y && !(((*pvBombs)[i]).isBlasted()))
+            ((*pvBombs)[i]).blast();
+    }
+}
+
+/*void Explosion::killPlayerinCell(Vector2i currCell)
+{
+
+}*/
+
+void Explosion::randomPowerUpDestroy(Vector2i currCell)
+{
+    if((*Level)[currCell.x][currCell.y]!=0)
+    {
+        (*Level)[currCell.x][currCell.y] = random();
+    }
+}
+
+void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
+{
+    Vector2i currCell = startCell;
+    for(int i = 0; i < m_blastRange; i++)
+    {
+        currCell.x += unitVector.x;
+        currCell.y += unitVector.y;
+        if(currCell.y<0 ||currCell.x < 0 || currCell.x > 10 ||currCell.y > 16 || (*Level)[currCell.x][currCell.y]==2)
+            break;
+        destroyBombsInCell(currCell);
+        randomPowerUpDestroy(currCell);
+        std::cout << currCell.x << " " << currCell.y << std::endl;
+    }
+}
+
 Explosion::Explosion(Vector2i start_cell, int blast_range, std::vector< std::vector<int> >* Levell, std::vector<Bomb>* pvbombs):
         m_startCell(start_cell), m_blastRange(blast_range), Level(Levell), pvBombs(pvbombs)
 {
 
-    Vector2i currCell = m_startCell;
-    //left
-    for(int i = 0; i < m_blastRange; i++)
-    {
-        currCell.y -= 1;
-        if(currCell.y<0 || (*Level)[currCell.x][currCell.y]==2)
-            break;
-        if((*Level)[currCell.x][currCell.y]!=0)
-        {
-            (*Level)[currCell.x][currCell.y] = random();
-        }
-        std::cout << currCell.x << " " << currCell.y << std::endl;
-    }
-
-    //right
-    currCell = m_startCell;
-    for(int i = 0; i < m_blastRange; i++)
-    {
-        currCell.y += 1;
-        if(currCell.y>16 || (*Level)[currCell.x][currCell.y]==2)
-            break;
-
-        if((*Level)[currCell.x][currCell.y]!=0)
-        {
-            (*Level)[currCell.x][currCell.y] = random();
-        }
-        std::cout << currCell.x << " " << currCell.y << std::endl;
-    }
-
-    //up
-    currCell = m_startCell;
-    for(int i = 0; i < m_blastRange; i++)
-    {
-        currCell.x -= 1;
-        if(currCell.x<0 || (*Level)[currCell.x][currCell.y]==2)
-            break;
-        if((*Level)[currCell.x][currCell.y]!=0)
-        {
-            (*Level)[currCell.x][currCell.y] = random();
-        }
-        std::cout << currCell.x << " " << currCell.y << std::endl;
-    }
-
-    //down
-    currCell = m_startCell;
-    for(int i = 0; i < m_blastRange; i++)
-    {
-        currCell.x += 1;
-        if(currCell.x>10 || (*Level)[currCell.x][currCell.y]==2)
-            break;
-        if((*Level)[currCell.x][currCell.y]!=0)
-        {
-            (*Level)[currCell.x][currCell.y] = random();
-        }
-        std::cout << currCell.x << " " << currCell.y << std::endl;
-    }
-
-
+    explodeDirection(m_startCell, Vector2i(0, -1));
+    explodeDirection(m_startCell, Vector2i(0, +1));
+    explodeDirection(m_startCell, Vector2i(+1, 0));
+    explodeDirection(m_startCell, Vector2i(-1, 0));
 
 }

@@ -33,6 +33,11 @@ AnimatedSprite Bomb::getSprite()
     return m_Sprite;
 }
 
+Vector2i Bomb::getCell()
+{
+    return cell;
+}
+
 void Bomb::update(Time dt, Time time)
 {
     float totalTime = time.asSeconds();

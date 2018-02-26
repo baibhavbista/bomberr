@@ -27,7 +27,9 @@ public:
     Bomb(std::vector< std::vector<int> >* Levell, Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time, std::vector<Bomb>* pvBombs);
     AnimatedSprite getSprite();
     void update(Time dt, Time time);
+    Vector2i getCell();
     void blast();
     bool isBlasted();
+    //friend class Explosion;
 
 };
