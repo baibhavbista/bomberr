@@ -6,13 +6,9 @@ using namespace sf;
 //one user keys left, right, up down
 //other user WASD
 //escape closes the program
-int Engine::input(Time t)
+void Engine::input(Time t)
 {
-
-    if(Keyboard::isKeyPressed(Keyboard::Escape))
-    {
-        m_Window.close();
-    }
+    //std::cout << "input" << std::endl;
 
     if(!m_PBomber->collide(Level))
     {
@@ -48,10 +44,8 @@ int Engine::input(Time t)
         {
             m_PBomber->stopDown();
         }
-        if(Keyboard::isKeyPressed(Keyboard::SemiColon))
-        {
-            m_PBomber->dropBomb(t);
-        }
+
+
     }
 
     if(!m_PBomber0->collide(Level))
@@ -89,11 +83,28 @@ int Engine::input(Time t)
         {
             m_PBomber0->stopDown();
         }
-        if(Keyboard::isKeyPressed(Keyboard::Space))
-        {
-            m_PBomber0->dropBomb(t);
-        }
+
     }
-    return 0;
+    while(m_Window.pollEvent(event))
+    {
+        //std::cout << "poll_event" << std::endl;
+        if((event.type== Event::KeyPressed && event.key.code == sf::Keyboard::Escape)||event.type==Event::Closed)
+        {
+            m_Window.close();
+        }
+        if(event.type==Event::KeyReleased)
+        {
+            if(event.key.code == sf::Keyboard::SemiColon)
+            {
+                //std::cout << "semicolon" << std::endl;
+                m_PBomber->dropBomb(t);
+            }
+            if(event.key.code == sf::Keyboard::Space)
+            {
+                m_PBomber0->dropBomb(t);
+            }
+        }
+
+    }
 
 }

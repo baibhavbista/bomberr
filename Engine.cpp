@@ -1,7 +1,7 @@
 #include "Engine.h"
 using namespace sf;
 
-Engine::Engine(std::vector<Bomb>* pm_vBombs)
+Engine::Engine(std::vector<Bomb>* pm_vBombs):Level(11, std::vector<int> (17, 0) )
 {
     //resolution based on size of frame, which is (608, 416).
     m_Window.create(VideoMode(608, 416+65), "Bomber Move");
@@ -36,11 +36,15 @@ Engine::Engine(std::vector<Bomb>* pm_vBombs)
 
     m_pvBombs = pm_vBombs;
 
+
     //Vector that represents sprite dimensions in sprite sheet (for players/bombers)
     Vector2f spriteDim(768/12, 384/6);
     //m_pvBomber.push_back()
-    m_PBomber = new Bomber(m_PlayerTexture, m_BombTexture, spriteDim, 1, m_pvBombs);
-    m_PBomber0 = new Bomber(m_PlayerTexture, m_BombTexture, spriteDim, 0, m_pvBombs);
+    m_PBomber = new Bomber(Level, m_PlayerTexture, m_BombTexture, spriteDim, 1, m_pvBombs);
+    m_PBomber0 = new Bomber(Level, m_PlayerTexture, m_BombTexture, spriteDim, 0, m_pvBombs);
+
+    bombWasPressed[0] = false;
+    bombWasPressed[1] = false;
 }
 
 void Engine::start()
@@ -52,14 +56,14 @@ void Engine::start()
     while(m_Window.isOpen())
     {
         //std::cout << timer.getElapsedTime().asSeconds() << std::endl;
-        while(m_Window.pollEvent(event))
+        /*while(m_Window.pollEvent(event))
         {
             //if close button pressed, close
             if(event.type==Event::Closed)
             {
                 m_Window.close();
             }
-        }
+        }*/
         //save elapsed time since last loop to dt(minuscule time) and restart the clock
         Time dt = clock.restart();
         input(timer.getElapsedTime());

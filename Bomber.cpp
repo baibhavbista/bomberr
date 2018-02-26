@@ -4,7 +4,8 @@
 
 using namespace sf;
 
-Bomber::Bomber(Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs):m_TextureBomb(texture_bomb), m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
+Bomber::Bomber(std::vector< std::vector<int> >& Levell, Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs):
+    Level(Levell), m_TextureBomb(texture_bomb), m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
 {
     m_pvBombs = pvBombs;
     m_numBombs = 3;
@@ -12,6 +13,7 @@ Bomber::Bomber(Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDi
     m_Sprite.setScale(0.8,0.8);
     //color of the bomber
     m_color = color;
+
 
     m_spriteDim = spriteDim;
 
@@ -177,17 +179,25 @@ void Bomber::dropBomb(Time start_time)
 {
     if(m_numBombs > 0)
     {
-        Vector2f Position = coorIntoGood(Vector2f(m_Position.x + 25.6, m_Position.y + 25.6));
-        if(currentAnimation==&walkingAnimationDown)
-            Position.y += 32;
+        Vector2f Position =m_Sprite.getPosition();
+        Position = coorIntoGood(Vector2f(Position.x + 15, Position.y + 15));
+        Vector2i rc = coorToRc(Position);
+        std::cout << rc.x << " " << rc.y << std::endl;
+        /*if(currentAnimation==&walkingAnimationDown)
+            Position.x += 1;
         else if(currentAnimation==&walkingAnimationUp)
-            Position.y -= 32;
+            Position.x -= 1;
         else if(currentAnimation==&walkingAnimationRight)
-            Position.x += 32;
+            Position.y += 1;
         else if(currentAnimation==&walkingAnimationLeft)
-            Position.y += 32;
-        m_pvBombs->push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time, m_pvBombs));
-        m_numBombs--;
-        std::cout << "inside funcn dropbomb : " << m_numBombs << std::endl;
+            Position.y -= 1;
+        */
+        if(Level[rc.x][rc.y]==0)
+        {
+            Position = rcIntoCoor(rc.x, rc.y);
+            m_pvBombs->push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time, m_pvBombs));
+            m_numBombs--;
+            std::cout << "inside funcn dropbomb : " << m_numBombs << std::endl;
+        }
     }
 }

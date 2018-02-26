@@ -11,8 +11,8 @@ private:
     //main program window
     RenderWindow m_Window;
 
-    int Level[11][17];
-    //LevelMaker m_level;
+    std::vector < std::vector<int> > Level;
+     //LevelMaker m_level;
 
     //textures for the background, players,(.png found inside backgrounds and sprites folders)
     Texture m_BackgroundTexture;
@@ -35,8 +35,12 @@ private:
     Bomber* m_PBomber;
     Bomber* m_PBomber0;
 
+    bool bombWasPressed[2];
+
+    Event event;
+
     //input, update and draw functions that are called by public member function Engine::start()
-    int input(Time t);
+    void input(Time t);
     void update(Time dt, Time t);
     void draw();
 
