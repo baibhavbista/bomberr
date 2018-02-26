@@ -4,13 +4,15 @@
 #include <vector>
 #include "AnimatedSprite.hpp"
 #include "Animation.hpp"
-#include "Breakeable.h"
+
 using namespace sf;
 class Bomber;
 class Bomb
 {
 private:
+    Vector2i cell;
     std::vector<Bomb>* m_pvBombs;
+    std::vector< std::vector<int> >* Level;
     Vector2f m_Position;
     AnimatedSprite m_Sprite;
     Bomber* m_pBomber;
@@ -22,7 +24,7 @@ private:
     Animation m_bombAnimation;
 
 public:
-    Bomb(Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time, std::vector<Bomb>* pvBombs);
+    Bomb(std::vector< std::vector<int> >* Levell, Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time, std::vector<Bomb>* pvBombs);
     AnimatedSprite getSprite();
     void update(Time dt, Time time);
     void blast();

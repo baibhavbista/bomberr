@@ -17,14 +17,14 @@ void Engine::draw()
     {
         for(int c = 0; c < 17; c++)
         {
-            if(Level[r][c] == 1)
+            if((Level)[r][c] == 1)
             {
                 coor_tr = rcIntoCoor(r,c);
                 m_BlockSprite.setPosition(coor_tr);
                 m_Window.draw(m_BlockSprite);
             }
 
-            if(Level[r][c] == 4)
+            if((Level)[r][c] == 4)
             {
                 coor_tr = rcIntoCoor(r,c);
                 Sprite bomb(m_BombTexture, IntRect(0, 0, 32, 32));

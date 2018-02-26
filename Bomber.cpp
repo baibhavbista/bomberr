@@ -4,12 +4,12 @@
 
 using namespace sf;
 
-Bomber::Bomber(std::vector< std::vector<int> >& Levell, Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs):
+Bomber::Bomber(std::vector< std::vector<int> >* Levell, Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs):
     Level(Levell), m_TextureBomb(texture_bomb), m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
 {
     m_pvBombs = pvBombs;
     m_numBombs = 3;
-    m_bombRange = 2;
+    m_bombRange = 1;
     m_Sprite.setScale(0.8,0.8);
     //color of the bomber
     m_color = color;
@@ -192,10 +192,10 @@ void Bomber::dropBomb(Time start_time)
         else if(currentAnimation==&walkingAnimationLeft)
             Position.y -= 1;
         */
-        if(Level[rc.x][rc.y]==0)
+        if((*Level)[rc.x][rc.y]==0)
         {
             Position = rcIntoCoor(rc.x, rc.y);
-            m_pvBombs->push_back(Bomb(this, m_TextureBomb, Position, m_bombRange, start_time, m_pvBombs));
+            m_pvBombs->push_back(Bomb(Level, this, m_TextureBomb, Position, m_bombRange, start_time, m_pvBombs));
             m_numBombs--;
             std::cout << "inside funcn dropbomb : " << m_numBombs << std::endl;
         }

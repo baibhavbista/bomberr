@@ -33,7 +33,7 @@ private:
     bool m_UpPressed;
     bool m_DownPressed;
 
-    std::vector< std::vector<int> > Level;
+    std::vector< std::vector<int> >* Level;
 
 
     Vector2f m_spriteDim;
@@ -58,7 +58,7 @@ public:
     //Color of the bomber. 0 White, 1 Black, 2 Blue, 3 Red
     int m_color;
 
-    Bomber(std::vector< std::vector<int> >& Levell,  Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs);
+    Bomber(std::vector< std::vector<int> >* Levell,  Texture& texture_bomber, Texture& texture_bomb, Vector2f spriteDim, int color, std::vector<Bomb>* pvBombs);
 
     //gives position vector of the sprite
     IntRect getCollisionRect();
@@ -72,7 +72,7 @@ public:
 
     void moveAfterCollision(IntRect Player0, IntRect block);
 
-    bool collide(std::vector< std::vector<int> >& Level);
+    bool collide(std::vector< std::vector<int> >* Level);
 
     //function that updates m_Sprite(animation, position, continue or stop, etc)
     void update(Time dt);

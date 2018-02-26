@@ -40,8 +40,8 @@ Engine::Engine(std::vector<Bomb>* pm_vBombs):Level(11, std::vector<int> (17, 0) 
     //Vector that represents sprite dimensions in sprite sheet (for players/bombers)
     Vector2f spriteDim(768/12, 384/6);
     //m_pvBomber.push_back()
-    m_PBomber = new Bomber(Level, m_PlayerTexture, m_BombTexture, spriteDim, 1, m_pvBombs);
-    m_PBomber0 = new Bomber(Level, m_PlayerTexture, m_BombTexture, spriteDim, 0, m_pvBombs);
+    m_PBomber = new Bomber(&Level, m_PlayerTexture, m_BombTexture, spriteDim, 1, m_pvBombs);
+    m_PBomber0 = new Bomber(&Level, m_PlayerTexture, m_BombTexture, spriteDim, 0, m_pvBombs);
 
     bombWasPressed[0] = false;
     bombWasPressed[1] = false;

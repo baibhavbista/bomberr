@@ -3,9 +3,13 @@
 #include "bomber.h"
 #include "RCintoCoor.h"
 
-Bomb::Bomb(Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time, std::vector<Bomb>* pvBombs):
+#include "Explosion.h"
+
+Bomb::Bomb(std::vector< std::vector<int> >* Levell,Bomber* pBomber, Texture& texture_bomb, Vector2f position, int range, sf::Time start_time, std::vector<Bomb>* pvBombs):
     m_Texture(texture_bomb), m_Sprite(sf::seconds(0.8), true, false)
 {
+    cell = coorToRc(position);
+    Level = Levell;
     m_blasted = false;
     m_pvBombs = pvBombs;
 
@@ -43,7 +47,16 @@ void Bomb::update(Time dt, Time time)
 void Bomb::blast()
 {
     m_blasted = true;
+    Explosion(cell, m_range, Level, m_pvBombs);
     m_pBomber->m_numBombs++;
+    for(auto a:*Level)
+    {
+        for(auto b:a)
+        {
+            std::cout << b << " ";
+        }
+        std::cout << std::endl;
+    }
 }
 
 bool Bomb::isBlasted()

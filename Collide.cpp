@@ -49,7 +49,7 @@ void Bomber::moveAfterCollision(IntRect Player0, IntRect block)
     }
 }
 
-bool Bomber::collide(std::vector< std::vector<int> >& Level)
+bool Bomber::collide(std::vector< std::vector<int> >* (Level))
 {
     IntRect Player0 =  getCollisionRect();
     IntRect block;
@@ -57,7 +57,7 @@ bool Bomber::collide(std::vector< std::vector<int> >& Level)
     {
         for(int c = 0; c < 17; c++)
         {
-            if(Level[r][c]==1 || Level[r][c]==2)
+            if((*Level)[r][c]==1 || (*Level)[r][c]==2)
             {
                 Vector2f coor_tr = rcIntoCoor(r,c);
                 block = IntRect(coor_tr.x, coor_tr.y, 25, 30);

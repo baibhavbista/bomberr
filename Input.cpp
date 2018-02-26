@@ -10,7 +10,7 @@ void Engine::input(Time t)
 {
     //std::cout << "input" << std::endl;
 
-    if(!m_PBomber->collide(Level))
+    if(!m_PBomber->collide(&Level))
     {
         if(Keyboard::isKeyPressed(Keyboard::Left))
         {
@@ -48,7 +48,7 @@ void Engine::input(Time t)
 
     }
 
-    if(!m_PBomber0->collide(Level))
+    if(!m_PBomber0->collide(&Level))
     {
 
         if(Keyboard::isKeyPressed(Keyboard::A))
