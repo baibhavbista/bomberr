@@ -23,6 +23,7 @@ private:
     //this vector holds the x and y position of the sprite
     Vector2f m_Position;
 
+    Time m_lastKilledTime;
     //vector that has the bombs
     std::vector<Bomb>* m_pvBombs;
     //num of bombs
@@ -70,6 +71,7 @@ public:
     //returns the sprite
     //called by Engine::draw() to draw on the screen
     AnimatedSprite getSprite();
+    void setPosition(Vector2f position);
 
     Vector2i getRCVector();
 

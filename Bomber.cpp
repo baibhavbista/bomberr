@@ -9,6 +9,7 @@ using namespace sf;
 Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int color):
     m_pEngine(pEngine), Level(&(pEngine->Level)), m_TextureBomb(pEngine->m_BombTexture), m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
 {
+    m_lastKilledTime = pEngine->clock_explo.getElapsedTime();
     m_lives = 3;
     m_pvBombs = &(pEngine->m_vBombs);
     m_numBombs = 3;
@@ -92,6 +93,12 @@ AnimatedSprite Bomber::getSprite()
 {
     return m_Sprite;
 }
+
+void Bomber::setPosition(Vector2f position)
+{
+    m_Sprite.setPosition(position);
+}
+
 
 Vector2i Bomber::getRCVector()
 {
@@ -225,10 +232,15 @@ void Bomber::dropBomb(Time start_time)
 
 void Bomber::die()
 {
-    m_lives--;
-    std::cout <<"died: " << (m_lives) << "lives left" << std::endl;
-    if(m_lives==0)
-        m_pEngine->gameOver();
+    if(m_pEngine->clock_explo.getElapsedTime().asSeconds() - m_lastKilledTime.asSeconds() > 1)
+    {
+        m_lastKilledTime = m_pEngine->clock_explo.getElapsedTime();
+        m_lives--;
+        std::cout <<"died: " << (m_lives) << "lives left" << std::endl;
+        if(m_lives==0)
+            m_pEngine->gameOver();
+    }
+
 }
 
 

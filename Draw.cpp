@@ -67,6 +67,17 @@ void Engine::draw()
             Sprite temp = m_ExplosionSprite[std::get<1>(tup)-1];
             //std::cout << (clock_explo).getElapsedTime().asSeconds() << std::get<2>(tup).x << " " << std::get<2>(tup).y << std::endl;
             Vector2f coor = rcIntoCoor(std::get<2>(tup).x, std::get<2>(tup).y);
+
+            Vector2i bomberCell = m_PBomber->getRCVector();
+            if(bomberCell.x==std::get<2>(tup).x && bomberCell.y == std::get<2>(tup).y)
+            {
+                m_PBomber->die();
+            }
+            bomberCell = m_PBomber0->getRCVector();
+            if(bomberCell.x==std::get<2>(tup).x && bomberCell.y == std::get<2>(tup).y)
+            {
+                m_PBomber0->die();
+            }
             //std::cout << coor.x << " " << coor.y << std::endl;
             temp.setPosition(coor);
             explosionSprites.push_back(temp);
