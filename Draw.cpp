@@ -57,18 +57,26 @@ void Engine::draw()
 
         }
     }
-
-/*    std::vector<Breakeable> v = *m_pvBlocksBreakable;
-    for(int i = 0; i < v.size(); i++)
+    std::vector<Sprite> explosionSprites;
+    //(m_pEngine->explosionHelper).push_back(std::make_tuple((m_pEngine->clock.getElapsedTime()), num, startCell));
+    for(auto tup:explosionHelper)
     {
-        //std::cout << "breakable done" << std::endl;
-        if(!v[i].isBroken())
+        if((*m_pclock).getElapsedTime().asSeconds() - std::get<0>(tup).asSeconds() <= 0.01)
         {
-            //std::cout << "breakable done" << std::endl;
-            m_BlockSprite.setPosition(v[i].getPosition());
-            m_Window.draw(m_BlockSprite);
+            Sprite temp = m_ExplosionSprite[std::get<1>(tup)];
+            std::cout << (*m_pclock).getElapsedTime().asSeconds() << std::get<2>(tup).x << " " << std::get<2>(tup).y << std::endl;
+            Vector2f coor = rcIntoCoor(std::get<2>(tup).x, std::get<2>(tup).y);
+            //std::cout << coor.x << " " << coor.y << std::endl;
+            temp.setPosition(coor);
+            explosionSprites.push_back(temp);
         }
-    }*/
+    }
+    for(int i = 0; i < explosionSprites.size(); i++)
+    {
+        //m_Window.draw(explosionSprites[i]);
+    }
+
+
     AnimatedSprite dispSprite;
     for(int i = 0; i < int((*m_pvBombs).size()); i++)
     {

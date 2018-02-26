@@ -4,6 +4,7 @@ using namespace sf;
 
 Engine::Engine():Level(11, std::vector<int> (17, 0) )
 {
+    m_pclock = &clock;
     //resolution based on size of frame, which is (608, 416).
     m_Window.create(VideoMode(608, 416+65), "Bomber Move");
 
@@ -33,12 +34,14 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
     m_PowerSprite7.setTexture(m_PowerTexture7);
 
     m_ExplosionTexture.loadFromFile("sprites/explosion.png");
-    m_ExplosionSpriteStart.setTexture(m_ExplosionTexture);
-    m_ExplosionSpriteStart.setTextureRect(IntRect(0, 0, 32, 32));
-    m_ExplosionSpriteY.setTexture(m_ExplosionTexture);
-    m_ExplosionSpriteY.setTextureRect(IntRect(32, 0, 32, 32));
-    m_ExplosionSpriteX.setTexture(m_ExplosionTexture);
-    m_ExplosionSpriteX.setTextureRect(IntRect(64, 0, 32, 32));
+
+    m_ExplosionSprite = new Sprite[3];
+    m_ExplosionSprite[0].setTexture(m_ExplosionTexture);
+    m_ExplosionSprite[0].setTextureRect(IntRect(0, 0, 32, 32));
+    m_ExplosionSprite[1].setTexture(m_ExplosionTexture);
+    m_ExplosionSprite[1].setTextureRect(IntRect(32, 0, 32, 32));
+    m_ExplosionSprite[2].setTexture(m_ExplosionTexture);
+    m_ExplosionSprite[2].setTextureRect(IntRect(64, 0, 32, 32));
     //frame texture and sprite
 
     m_FrameTexture.loadFromFile("sprites/frame.png");
@@ -67,6 +70,7 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
 
 void Engine::start()
 {
+    m_pclock = &clock;
     Vector2f prev(768/12, 384/6);
     Clock timer;
     while(m_Window.isOpen())

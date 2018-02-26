@@ -14,9 +14,9 @@ private:
 
     std::vector < std::vector<int> > Level;
 
-    std::tuple<Time, int, Vector2f> explosionHelper;
+    std::vector< std::tuple<Time, int, Vector2i> > explosionHelper;
      //LevelMaker m_level;
-
+    Clock *m_pclock;
     Clock clock;
     //textures for the background, players,(.png found inside backgrounds and sprites folders)
     Texture m_BackgroundTexture;
@@ -39,9 +39,7 @@ private:
     Sprite m_PowerSprite6;
     Sprite m_PowerSprite7;
 
-    Sprite m_ExplosionSpriteStart;
-    Sprite m_ExplosionSpriteY;
-    Sprite m_ExplosionSpriteX;
+    Sprite* m_ExplosionSprite;
 
     std::vector<Bomb>* m_pvBombs;
     std::vector<Bomb> m_vBombs;
