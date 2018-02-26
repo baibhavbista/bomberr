@@ -4,6 +4,7 @@
 #include "Bomber.h"
 #include "RCintoCoor.h"
 #include <tuple>
+#include <string>
 
 class Engine
 {

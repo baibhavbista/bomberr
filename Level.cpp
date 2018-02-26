@@ -1,7 +1,6 @@
 #include "Level.h"
 
-
-void createLevel(char* file_name, std::vector< std::vector<int> >& Level)
+void createLevel(std::string file_name, std::vector< std::vector<int> >& Level)
 {
     std::ifstream level(file_name);
     char ch;

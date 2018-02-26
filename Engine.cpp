@@ -1,6 +1,20 @@
 #include "Engine.h"
-
+#include <cstdlib>
+#include <sstream>
+#include <ctime>
 using namespace sf;
+
+//total number of asset sets
+const int NUM_ASSETS = 1;
+const int NUM_LEVELS = 2;
+int random(int maxi)
+{
+    srand(time(NULL));
+    int random1 = rand()%maxi;
+    //std::cout << random << std::endl;
+    return random1 + 1;
+}
+
 
 Engine::Engine():Level(11, std::vector<int> (17, 0) )
 {
@@ -10,26 +24,33 @@ Engine::Engine():Level(11, std::vector<int> (17, 0) )
     //sets framerate to 60 fps
     m_Window.setFramerateLimit(60);
 
-    createLevel("Levels/1.csv", Level);
+    std::stringstream ss;
+    ss << "Levels/" << random(NUM_LEVELS) << ".csv";
+    createLevel(ss.str(), Level);
 
     //loads background from file
-    //TODO: random background
-    m_BackgroundTexture.loadFromFile("backgrounds/back.png");
+    int num_asset = random(NUM_ASSETS);
+    ss.str("");
+    ss << "backgrounds/" << num_asset << ".png";
+
+    m_BackgroundTexture.loadFromFile(ss.str());
     m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
-    m_BlockTexture.loadFromFile("sprites/breakable.png");
+    ss.str("");
+    ss << "sprites/blocks/" << num_asset << ".png";
+    m_BlockTexture.loadFromFile(ss.str());
     m_BlockSprite.setTexture(m_BlockTexture);
+    m_BlockSprite.setTextureRect(IntRect(0, 0, 32, 32));
+    m_SolidBlockSprite.setTexture(m_BlockTexture);
+    m_SolidBlockSprite.setTextureRect(IntRect(32, 0, 32, 32));
 
-    m_SolidBlockTexture.loadFromFile("sprites/solid.png");
-    m_SolidBlockSprite.setTexture(m_SolidBlockTexture);
-
-    m_PowerTexture5.loadFromFile("sprites/5.png");
+    m_PowerTexture5.loadFromFile("sprites/powerups/5.png");
     m_PowerSprite5.setTexture(m_PowerTexture5);
 
-    m_PowerTexture6.loadFromFile("sprites/6.png");
+    m_PowerTexture6.loadFromFile("sprites/powerups/6.png");
     m_PowerSprite6.setTexture(m_PowerTexture6);
 
-    m_PowerTexture7.loadFromFile("sprites/7.png");
+    m_PowerTexture7.loadFromFile("sprites/powerups/7.png");
     m_PowerSprite7.setTexture(m_PowerTexture7);
 
     m_ExplosionTexture.loadFromFile("sprites/explosion.png");

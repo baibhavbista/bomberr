@@ -2,7 +2,7 @@
 #include "Bomb.h"
 #include "Engine.h"
 
-int random()
+int powerup_random()
 {
     int random1 = rand()%20;
     //std::cout << random << std::endl;
@@ -25,7 +25,6 @@ void Explosion::destroyBombsInCell(Vector2i currCell)
             ((m_pEngine->m_vBombs)[i]).blast();
     }
 }
-
 void Explosion::killPlayerinCell(Vector2i currCell)
 {
     Vector2i bomberCell = m_pEngine->m_PBomber->getRCVector();
@@ -44,7 +43,7 @@ bool Explosion::randomPowerUpDestroy(Vector2i currCell)
 {
     if((m_pEngine->Level)[currCell.x][currCell.y]==1)
     {
-        (m_pEngine->Level)[currCell.x][currCell.y] = random();
+        (m_pEngine->Level)[currCell.x][currCell.y] = powerup_random();
         return true;
     }
     return false;
