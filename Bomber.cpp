@@ -84,6 +84,16 @@ Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int
     currentAnimation = &walkingAnimationDown;
 
 
+    m_RectSourceSprite = m_RectSourceSprite_down;
+    m_RectSourceSprite.top += 4*spriteDim.y;
+    animationDead.setSpriteSheet(texture_bomber);
+    for(int i = 0; i < 2; i++)
+    {
+        animationDead.addFrame(m_RectSourceSprite);
+        m_RectSourceSprite.left += spriteDim.x;
+    }
+
+
 
 }
 
@@ -238,7 +248,10 @@ void Bomber::die()
         m_lives--;
         std::cout <<"died: " << (m_lives) << "lives left" << std::endl;
         if(m_lives==0)
-            m_pEngine->gameOver();
+        {
+            m_Sprite.play(animationDead);
+            m_pEngine->gameOver(m_color+1);
+        }
     }
 
 }

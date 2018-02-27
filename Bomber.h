@@ -52,6 +52,7 @@ private:
 
     //animations for the movement
     Animation walkingAnimationDown, walkingAnimationUp, walkingAnimationLeft, walkingAnimationRight;
+    Animation animationDead;
 
     //animation current movement
     Animation* currentAnimation;

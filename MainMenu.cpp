@@ -1,13 +1,12 @@
 #include <iostream>
 #include "MainMenu.h"
 
-MainMenu::MainMenu():App(sf::VideoMode(608, 481, 32), "Game Arena")
+MainMenu::MainMenu():App(sf::VideoMode(608, 481, 32), "Bomberman")
 {
     Texture_back.loadFromFile("backgrounds/MainMenu.png");
     Sprite_back.setTexture(Texture_back);
-    p1ubuttontext.loadFromFile("sprites/menu/1playerunpressed.png");
+    p1dbuttontext.loadFromFile("sprites/menu/1grey.png");
     p2ubuttontext.loadFromFile("sprites/menu/2playerunpressed.png");
-    p1buttontext.loadFromFile("sprites/menu/1playerpressed.png");
     p2buttontext.loadFromFile("sprites/menu/2playerpressed.png");
     exitutext.loadFromFile("sprites/menu/exitunpressed.png");
     exittext.loadFromFile("sprites/menu/exitpressed.png");
@@ -15,7 +14,8 @@ MainMenu::MainMenu():App(sf::VideoMode(608, 481, 32), "Game Arena")
     continuetext.loadFromFile("sprites/menu/continuepressed.png");
     Menu1.setTexture(&p2ubuttontext);
     Menu2.setTexture(&exitutext);
-    Menu3.setTexture(&continueutext);
+    //Menu3.setTexture(&continueutext);
+    Menu3.setTexture(&p1dbuttontext);
     Menu1.setSize(sf::Vector2f(206.0f,35.0f));
 	//Menu1.setCharacterSize(20);
 	//Menu1.setString("Play");
@@ -24,12 +24,12 @@ MainMenu::MainMenu():App(sf::VideoMode(608, 481, 32), "Game Arena")
 	Menu2.setSize(sf::Vector2f(206.0f,35.0f));
 	//Menu1.setCharacterSize(20);
 	//Menu1.setString("Play");
-	Menu2.setPosition(sf::Vector2f(243.0f,330.0f));
+	Menu2.setPosition(sf::Vector2f(243.0f,266.0f+50));
 
 	Menu3.setSize(sf::Vector2f(206.0f,35.0f));
 	//Menu1.setCharacterSize(20);
 	//Menu1.setString("Play");
-	Menu3.setPosition(sf::Vector2f(243.0f,266.0f));
+	Menu3.setPosition(sf::Vector2f(243.0f,266.0f-50));
 
 }
 
@@ -74,17 +74,17 @@ int MainMenu::start()
 		{
 			Menu1.setTexture(&p2buttontext);
             Menu2.setTexture(&exitutext);
-            Menu3.setTexture(&continuetext);
+            //Menu3.setTexture(&continuetext);
 		}
 		else
 		{
 			Menu1.setTexture(&p2ubuttontext);
             Menu2.setTexture(&exittext);
-            Menu3.setTexture(&continueutext);
+            //Menu3.setTexture(&continueutext);
 		}
 		App.draw(Menu1);
 		App.draw(Menu2);
-		//App.draw(Menu3);
+		App.draw(Menu3);
         App.display();
 
     }

@@ -1,5 +1,6 @@
 
 #include "Level.h"
+#include "PausableTimer.h"
 #include "Bomb.h"
 #include "Bomber.h"
 #include "RCintoCoor.h"
@@ -10,6 +11,9 @@ class Engine
 {
 private:
 
+    bool m_gamePaused;
+    bool m_gameOver;
+    int m_gameOverCode;
     //main program window
     RenderWindow& m_Window;
 
@@ -17,9 +21,13 @@ private:
 
     std::vector< std::tuple<Time, int, Vector2i> > explosionHelper;
      //LevelMaker m_level;
+    PausableTimer displayTimer;
     Clock clock_explo;
     //textures for the background, players,(.png found inside backgrounds and sprites folders)
     Texture m_BackgroundTexture;
+    Texture m_BackgroundPauseTexture;
+    Texture m_BackgroundPlayer1Wins;
+    Texture m_BackgroundPlayer2Wins;
     Texture m_FrameTexture;
     Texture m_BlockTexture;
     Texture m_SolidBlockTexture;
@@ -32,6 +40,8 @@ private:
 
     //normal sprite for Background
     Sprite m_BackgroundSprite;
+    Sprite m_PauseSprite;
+    Sprite m_GameOverSprite[3];
     Sprite m_FrameSprite;
     Sprite m_BlockSprite;
     Sprite m_SolidBlockSprite;
@@ -58,7 +68,15 @@ private:
     void input(Time t);
     void update(Time dt, Time t);
     void draw();
+
     void PowerupCheck(Bomber* m_PBomber);
+
+    void resume();
+    void pause();
+    int gameOver(int loser);
+
+
+
 
 
 public:
@@ -68,5 +86,4 @@ public:
     friend class Explosion;
     //runs game loop , calls input, update, draw within the loop
     void start();
-    void gameOver();
 };

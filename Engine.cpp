@@ -18,6 +18,9 @@ int random(int maxi)
 
 Engine::Engine(RenderWindow& window):m_Window(window),Level(11, std::vector<int> (17, 0) )
 {
+    m_gamePaused = false;
+    m_gameOver = false;
+    m_gameOverCode = 0;
     //resolution based on size of frame, which is (608, 416).
     m_Window.create(VideoMode(608, 416+65), "Bomber Move");
 
@@ -36,6 +39,14 @@ Engine::Engine(RenderWindow& window):m_Window(window),Level(11, std::vector<int>
     m_BackgroundTexture.loadFromFile(ss.str());
     m_BackgroundSprite.setTexture(m_BackgroundTexture);
 
+    //frame texture and sprite
+
+    ss.str("");
+    ss << "sprites/frames/" << num_asset << ".png";
+    m_FrameTexture.loadFromFile(ss.str());
+    m_FrameSprite.setTexture(m_FrameTexture);
+    m_FrameSprite.setPosition(0, 65);
+
     ss.str("");
     ss << "sprites/blocks/" << num_asset << ".png";
     m_BlockTexture.loadFromFile(ss.str());
@@ -43,6 +54,15 @@ Engine::Engine(RenderWindow& window):m_Window(window),Level(11, std::vector<int>
     m_BlockSprite.setTextureRect(IntRect(0, 0, 32, 32));
     m_SolidBlockSprite.setTexture(m_BlockTexture);
     m_SolidBlockSprite.setTextureRect(IntRect(32, 0, 32, 32));
+
+    m_BackgroundPauseTexture.loadFromFile("backgrounds/Pause.png");
+    m_PauseSprite.setTexture(m_BackgroundPauseTexture);
+
+    m_BackgroundPlayer1Wins.loadFromFile("backgrounds/player1wins.png");
+    m_GameOverSprite[1].setTexture(m_BackgroundPlayer1Wins);
+
+    m_BackgroundPlayer2Wins.loadFromFile("backgrounds/player2wins.png");
+    m_GameOverSprite[2].setTexture(m_BackgroundPlayer2Wins);
 
     m_PowerTexture5.loadFromFile("sprites/powerups/5.png");
     m_PowerSprite5.setTexture(m_PowerTexture5);
@@ -62,13 +82,7 @@ Engine::Engine(RenderWindow& window):m_Window(window),Level(11, std::vector<int>
         m_ExplosionSprite[i].setTextureRect(IntRect(32*i, 0, 32, 32));
     }
 
-    //frame texture and sprite
 
-    m_FrameTexture.loadFromFile("sprites/frame.png");
-    //std::cout << "Successful" <<std::endl;
-
-    m_FrameSprite.setTexture(m_FrameTexture);
-    m_FrameSprite.setPosition(0, 65);
     m_pvBombs = &m_vBombs;
 
 /*    m_plevel = new LevelMaker();
@@ -93,21 +107,46 @@ void Engine::start()
     Clock clock;
     Vector2f prev(768/12, 384/6);
     Clock timer;
+    displayTimer.Pause();
+    displayTimer.Start();
     while(m_Window.isOpen())
     {
         //std::cout << timer.getElapsedTime().asSeconds() << std::endl;
 
         //save elapsed time since last loop to dt(minuscule time) and restart the clock
         Time dt = clock.restart();
-        input(timer.getElapsedTime());
-        update(dt, timer.getElapsedTime());
+
+        if(m_gamePaused)
+        {
+            displayTimer.Pause();
+            input(timer.getElapsedTime());
+        }
+        else
+        {
+            displayTimer.Start();
+            input(timer.getElapsedTime());
+            update(dt, timer.getElapsedTime());
+        }
         draw();
     }
 }
 
-void Engine::gameOver()
+
+void Engine::pause()
 {
-    //nothing yet
+    m_gamePaused = true;
+}
+
+void Engine::resume()
+{
+    m_gamePaused = false;
+}
+
+int Engine::gameOver(int loser)
+{
+    m_gamePaused = true;
+    m_gameOver = true;
+    m_gameOverCode = (loser==1)?2:1;
 }
 
 

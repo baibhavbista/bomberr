@@ -14,9 +14,8 @@ private:
 	sf::RectangleShape Menu2;
     sf::RectangleShape Menu3;
 
-    sf::Texture p1ubuttontext;
 	sf::Texture p2ubuttontext;
-	sf::Texture p1buttontext;
+	sf::Texture p1dbuttontext;
 	sf::Texture p2buttontext;
 	sf::Texture exitutext;
 	sf::Texture exittext;

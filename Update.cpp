@@ -34,7 +34,7 @@ void Engine::PowerupCheck(Bomber* m_PBomber)
     }
     else if(Level[loc_player.x][loc_player.y]==7)
     {
-        m_PBomber->m_Speed += 50;
+        m_PBomber->m_Speed += 25;
         Level[loc_player.x][loc_player.y] = 0;
     }
 }
