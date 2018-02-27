@@ -2,7 +2,7 @@
 #include "MainMenu.h"
 
 //MainMenu class constructor, initializes all the required variables for the menu
-MainMenu::MainMenu():App(sf::VideoMode(608, 481, 32), "Bomberman")
+MainMenu::MainMenu():App(sf::VideoMode(608, 481, 32), "Bomberr")
 {
     //set up texture ans sprite for background of main menu
     Texture_back.loadFromFile("backgrounds/MainMenu.png");

@@ -1,8 +1,15 @@
 #include "Engine.h"
 #include "MainMenu.h"
+#include "iostream"
 
 int main()
 {
+    std::cout << "BomberMan Clone: Bomberr \
+                 \n\nMade as Semester Project for OOP class \
+                 \n\nBy : Baibhav Bista 073BCT511 \
+                 \n     Lumanti Dangol 073BCT521 \
+                 \n     Mohit Kedia 073BCT523 \
+                 \n\nGithub link: https://github.com/baibhavbista/bomberr" << std::endl;
     MainMenu menu;
 
     //opt stores the return value of menu.start()

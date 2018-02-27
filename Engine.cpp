@@ -26,7 +26,7 @@ Engine::Engine(RenderWindow& window):m_Window(window),Level(11, std::vector<int>
     m_gameOverCode = 0;
 
     //resolution based on size of frame, which is (608, 416).
-    m_Window.create(VideoMode(608, 416+65), "Bomber Move");
+    //m_Window.create(VideoMode(608, 416+65), "Bomber Move");
 
     //sets framerate to 60 fps
     m_Window.setFramerateLimit(60);
