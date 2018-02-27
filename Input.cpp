@@ -14,7 +14,7 @@ void Engine::input(Time t)
         while(m_Window.pollEvent(event))
         {
             //std::cout << "poll_event" << std::endl;
-            if((event.type== Event::KeyPressed && event.key.code == sf::Keyboard::Return)||event.type==Event::Closed)
+            if((event.type== Event::KeyPressed &&(event.key.code == sf::Keyboard::Return))||event.type==Event::Closed)
             {
                 m_Window.close();
             }

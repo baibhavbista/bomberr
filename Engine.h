@@ -23,8 +23,18 @@ private:
      //LevelMaker m_level;
     PausableTimer displayTimer;
     Clock clock_explo;
+
+    Text timeDisplayText;
+    Font timeDisplayFont;
+
+
+    Text player0LifeText;
+    Text player1LifeText;
+    Font playerLifeFont;
+
     //textures for the background, players,(.png found inside backgrounds and sprites folders)
     Texture m_BackgroundTexture;
+    Texture m_HUDTexture;
     Texture m_BackgroundPauseTexture;
     Texture m_BackgroundPlayer1Wins;
     Texture m_BackgroundPlayer2Wins;
@@ -40,6 +50,7 @@ private:
 
     //normal sprite for Background
     Sprite m_BackgroundSprite;
+    Sprite m_HUDSprite;
     Sprite m_PauseSprite;
     Sprite m_GameOverSprite[3];
     Sprite m_FrameSprite;
@@ -79,6 +90,9 @@ private:
     //called from within Engine::update()
     //enables player to pick up PowerUps
     void PowerupCheck(Bomber* m_PBomber);
+
+    //called from within Engine::update(), updates the HUD
+    void updateHUD();
 
     //function for resuming game, sets private bool m_gamePaused to false
     void resume();

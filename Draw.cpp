@@ -21,6 +21,11 @@ void Engine::draw()
     {
         //draw background
         m_Window.draw(m_BackgroundSprite);
+        m_Window.draw(m_HUDSprite);
+        m_Window.draw(timeDisplayText);
+        m_Window.draw(player0LifeText);
+        m_Window.draw(player1LifeText);
+
         m_Window.draw(m_FrameSprite);
 
         Vector2f coor_tr;

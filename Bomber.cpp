@@ -26,12 +26,13 @@ Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int
     //if player 1, start at bottom right
     // TODO
     //set to correct values after hud and walls
+    /*
     if(color==0)
         m_Position = Vector2f(rcIntoCoor(0, 0).x-22, rcIntoCoor(0, 0).y-32) ;
     else
-        m_Position = Vector2f(rcIntoCoor(10, 16).x-22, rcIntoCoor(10, 16).y-32);
-    //m_Position.x = (color==0)?(52-spriteDim.x/2):(567-spriteDim.x/2);
-    //m_Position.y = (color==0)?(126-spriteDim.y/2):(421-spriteDim.y/2);
+        m_Position = Vector2f(rcIntoCoor(10, 16).x-22, rcIntoCoor(10, 16).y-32);*/
+    m_Position.x = (color==0)?(52-spriteDim.x/2):(567-spriteDim.x/2);
+    m_Position.y = (color==0)?(126-spriteDim.y/2):(421-spriteDim.y/2);
     m_spriteDim = spriteDim;
 
     //two IntRect which denote sprite location in spritesheet

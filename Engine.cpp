@@ -27,6 +27,28 @@ Engine::Engine(RenderWindow& window):m_Window(window),Level(11, std::vector<int>
     //sets framerate to 60 fps
     m_Window.setFramerateLimit(60);
 
+    m_HUDTexture.loadFromFile("sprites/HUD.png");
+    m_HUDSprite.setTexture(m_HUDTexture);
+
+
+    timeDisplayFont.loadFromFile("fonts/time.ttf");
+
+    timeDisplayText.setFont(timeDisplayFont);
+    timeDisplayText.setCharacterSize(40);
+    timeDisplayText.setFillColor(Color::White);
+    timeDisplayText.setPosition(150, 8);
+
+
+    playerLifeFont.loadFromFile("fonts/bomberman.ttf");
+
+    player0LifeText.setFont(playerLifeFont);
+    player0LifeText.setCharacterSize(20);
+    player0LifeText.setPosition(40, 10);
+
+    player1LifeText.setFont(playerLifeFont);
+    player1LifeText.setCharacterSize(20);
+    player1LifeText.setPosition(550, 10);
+
     std::stringstream ss;
     ss << "Levels/" << random(NUM_LEVELS) << ".csv";
     createLevel(ss.str(), Level);
