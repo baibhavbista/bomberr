@@ -8,3 +8,9 @@ By : Baibhav Bista 073BCT511
 
 Github link: https://github.com/baibhavbista/bomberr
 
+Instructions:
+Executable inside dir "Source Code"
+Same as Bomberman
+For Player1(White): Controls: Directions(W, A, S, D), Drop Bomb(Space)
+For Player2(Black): Controls: Directions(Up, Left, Down, Right), Drop Bomb(Semicolon)
+
