@@ -80,11 +80,17 @@ Engine::Engine(RenderWindow& window):m_Window(window),Level(11, std::vector<int>
     m_BackgroundPauseTexture.loadFromFile("backgrounds/Pause.png");
     m_PauseSprite.setTexture(m_BackgroundPauseTexture);
 
+
+    m_BackgroundDraw.loadFromFile("backgrounds/drawscreen.png");
+    m_GameOverSprite[0].setTexture(m_BackgroundDraw);
+
     m_BackgroundPlayer1Wins.loadFromFile("backgrounds/player1wins.png");
     m_GameOverSprite[1].setTexture(m_BackgroundPlayer1Wins);
 
     m_BackgroundPlayer2Wins.loadFromFile("backgrounds/player2wins.png");
     m_GameOverSprite[2].setTexture(m_BackgroundPlayer2Wins);
+
+
 
     m_PowerTexture5.loadFromFile("sprites/powerups/5.png");
     m_PowerSprite5.setTexture(m_PowerTexture5);
@@ -168,7 +174,10 @@ int Engine::gameOver(int loser)
 {
     m_gamePaused = true;
     m_gameOver = true;
-    m_gameOverCode = (loser==1)?2:1;
+    if(loser==0)
+        m_gameOverCode = 0;
+    else
+        m_gameOverCode = (loser==1)?2:1;
 }
 
 

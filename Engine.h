@@ -38,6 +38,7 @@ private:
     Texture m_BackgroundPauseTexture;
     Texture m_BackgroundPlayer1Wins;
     Texture m_BackgroundPlayer2Wins;
+    Texture m_BackgroundDraw;
     Texture m_FrameTexture;
     Texture m_BlockTexture;
     Texture m_SolidBlockTexture;
