@@ -68,9 +68,10 @@
 		<Unit filename="Input.cpp" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
-		<Unit filename="LevelMaker.h" />
 		<Unit filename="MainMenu.cpp" />
 		<Unit filename="MainMenu.h" />
+		<Unit filename="PausableTimer.cpp" />
+		<Unit filename="PausableTimer.h" />
 		<Unit filename="RCintoCoor.cpp" />
 		<Unit filename="RCintoCoor.h" />
 		<Unit filename="Update.cpp" />

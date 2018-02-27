@@ -76,7 +76,7 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
         //(m_pEngine->explosionHelper).push_back(std::make_tuple((((m_pEngine->clock).getElapsedTime()), num, startCell)));
 //        std::cout <<
         killPlayerinCell(currCell);
-        destroyBombsInCell(m_startCell);
+        destroyBombsInCell(currCell);
         if(randomPowerUpDestroy(currCell))
             break;
     }
