@@ -147,12 +147,12 @@ void Engine::start()
         if(m_gamePaused)
         {
             displayTimer.Pause();
-            input(timer.getElapsedTime());
+            input(timer.getElapsedTime(), timer);
         }
         else
         {
             displayTimer.Start();
-            input(timer.getElapsedTime());
+            input(timer.getElapsedTime(), timer);
             update(dt, timer.getElapsedTime());
         }
         draw();
@@ -170,9 +170,9 @@ void Engine::resume()
     m_gamePaused = false;
 }
 
-int Engine::gameOver(int loser)
+void Engine::gameOver(int loser)
 {
-    m_gamePaused = true;
+    //m_gamePaused = true;
     m_gameOver = true;
     if(loser==0)
         m_gameOverCode = 0;

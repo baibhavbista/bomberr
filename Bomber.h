@@ -89,7 +89,7 @@ public:
 
     //handles collision with blocks(breakeable, solid) and walls
     //takes the vector of vectors of int "Level" as argument
-    bool collide(std::vector< std::vector<int> >* Level);
+    bool collide(std::vector< std::vector<int> >* (Level), Time T);
 
     //function that updates m_Sprite(animation, position, continue or stop, etc)
     void update(Time dt);

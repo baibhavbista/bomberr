@@ -78,7 +78,7 @@ private:
 
     //input function called by public member function Engine::start()
     //does input handling for 3 conditions, game screen, pause screen, and win screen
-    void input(Time t);
+    void input(Time t, Clock timer);
 
     //update function called by public member function Engine::start()
     //does updating of the sprites according to the condition, runs in game screen only
@@ -104,7 +104,7 @@ private:
     //function for finishing game after either player wins or time finishes
     //the value of int loser corresponds to state
     //0-draw, 1-player1 lost, 2-player2 lost
-    int gameOver(int loser);
+    void gameOver(int loser);
 
 
 public:

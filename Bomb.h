@@ -47,4 +47,6 @@ public:
     //returns the private bool m_blasted, that signifies if the bomb has blasted or not
     bool isBlasted();
 
+    friend Bomber;
+
 };
