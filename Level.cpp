@@ -1,5 +1,6 @@
 #include "Level.h"
 
+//creates level, reading from file_name(generally csv file) and save to matrix Level
 void createLevel(std::string file_name, std::vector< std::vector<int> >& Level)
 {
     std::ifstream level(file_name);

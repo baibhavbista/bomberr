@@ -1,6 +1,6 @@
 #include "PausableTimer.h"
 
-
+//constructor for the pausable timer
 PausableTimer::PausableTimer()
 {
     m_bPaused = false;
@@ -8,6 +8,7 @@ PausableTimer::PausableTimer()
     m_C.restart();
 }
 
+//Resets the pausable timer
 void PausableTimer::Reset()
 {
     m_C.restart();
@@ -15,6 +16,7 @@ void PausableTimer::Reset()
     m_bPaused = false;
 }
 
+//Starts/Resumes the pausable timer
 void PausableTimer::Start()
 {
     if (m_bPaused)
@@ -24,6 +26,7 @@ void PausableTimer::Start()
     m_bPaused = false;
 }
 
+//Pauses the pausable timer
 void PausableTimer::Pause()
  {
     if (!m_bPaused)
@@ -33,6 +36,7 @@ void PausableTimer::Pause()
     m_bPaused = true;
 }
 
+//returns the elapsed time in seconds(type float)
 float PausableTimer::GetElapsedSeconds()
 {
     if (!m_bPaused)

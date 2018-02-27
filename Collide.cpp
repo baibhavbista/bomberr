@@ -2,6 +2,7 @@
 #include "RCintoCoor.h"
 #include "Engine.h"
 
+//returns collision Rectangle(an IntRect corresponding to the bombers area)
 IntRect Bomber::getCollisionRect()
 {
     float x, y;
@@ -10,17 +11,19 @@ IntRect Bomber::getCollisionRect()
     return IntRect(x, y, 20, 22-5);
 }
 
+//causes movement after collision
+//takes the intRect of the player and the block as arguments
+//called from within Bomber::collide()
 void Bomber::moveAfterCollision(IntRect Player0, IntRect block)
 {
+
     if( m_LeftPressed ||  m_RightPressed )
     {
-
         stop();
         if(block.left > Player0.left)
         {
             m_LeftPressed = true;
         }
-
         else
         {
             m_RightPressed = true;
@@ -41,10 +44,14 @@ void Bomber::moveAfterCollision(IntRect Player0, IntRect block)
     }
 }
 
+//handles collision with blocks(breakeable, solid) and walls
+//takes the vector of vectors of int "Level" as argument
 bool Bomber::collide(std::vector< std::vector<int> >* (Level), Time T)
 {
     IntRect Player0 =  getCollisionRect();
     IntRect block;
+
+    //handles collision with breakeable blocks(1) and unbreakeable blocks(2)
     for(int r = 0; r < 11; r++)
     {
         for(int c = 0; c < 17; c++)
@@ -62,12 +69,13 @@ bool Bomber::collide(std::vector< std::vector<int> >* (Level), Time T)
         }
     }
 
-    //(m_pEngine->m_vBombs)
-
+    //handles collision with bombs(since 1 s after their deployment)
     for(int i = 0; i < int(m_pEngine->m_vBombs.size());i++)
     {
+        //checks if bomb blasted or not, goes in only if not blasted yet
         if(!((m_pEngine->m_vBombs)[i]).isBlasted())
         {
+            //if it has been 1 sec since deployment of bomb
             if(T.asSeconds() - ((m_pEngine->m_vBombs)[i]).m_startTime.asSeconds() > 1.0 )
             {
                 Vector2f coor_tr = rcIntoCoor(((m_pEngine->m_vBombs)[i]).getCell().x, ((m_pEngine->m_vBombs)[i]).getCell().y);
@@ -81,6 +89,7 @@ bool Bomber::collide(std::vector< std::vector<int> >* (Level), Time T)
         }
     }
 
+    //handles collision with walls: TOPWALL, BOTTOMWALL, LEFTWALL and RIGHTWALL respectively
     IntRect wall = TOPWALL;
     if(Player0.intersects(wall))
     {
@@ -105,8 +114,6 @@ bool Bomber::collide(std::vector< std::vector<int> >* (Level), Time T)
         moveAfterCollision(Player0, wall);
         return true;
     }
-
     return false;
-
 }
 

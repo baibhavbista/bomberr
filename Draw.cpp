@@ -5,46 +5,57 @@
 //draws all the things
 void Engine::draw()
 {
-    //clear white window
+    //clear to a white window
     m_Window.clear(Color::White);
 
-
+    //if game over
     if(m_gameOver)
     {
         m_Window.draw(m_GameOverSprite[m_gameOverCode]);
     }
+    //else if game paused
     else if(m_gamePaused)
     {
         m_Window.draw(m_PauseSprite);
     }
+    //else(game running)
     else
     {
         //draw background
         m_Window.draw(m_BackgroundSprite);
+
+        //draw Heads Up Display and its components(countdown timer, remaining lives of players)
         m_Window.draw(m_HUDSprite);
         m_Window.draw(timeDisplayText);
         m_Window.draw(player0LifeText);
         m_Window.draw(player1LifeText);
 
+        //draws frame
         m_Window.draw(m_FrameSprite);
 
         Vector2f coor_tr;
+
+        //check the matrix Levels and draw breakeable blocks(1), unbreakeable blocks(2), bombs(4), powerups(5, 6, 7)
+        //iterate over matrix(actually vector of vectors of ints) Level
         for(int r = 0; r < 11; r++)
         {
             for(int c = 0; c < 17; c++)
             {
+                //draw breakeable blocks
                 if((Level)[r][c] == 1)
                 {
                     coor_tr = rcIntoCoor(r,c);
                     m_BlockSprite.setPosition(coor_tr);
                     m_Window.draw(m_BlockSprite);
                 }
+                //draw unbreakeable blocks
                 else if((Level)[r][c] == 2)
                 {
                     coor_tr = rcIntoCoor(r,c);
                     m_SolidBlockSprite.setPosition(coor_tr);
                     m_Window.draw(m_SolidBlockSprite);
                 }
+                //draw bombs
                 else if((Level)[r][c] == 4)
                 {
                     coor_tr = rcIntoCoor(r,c);
@@ -52,6 +63,7 @@ void Engine::draw()
                     bomb.setPosition(coor_tr);
                     m_Window.draw(bomb);
                 }
+                //draw powerups
                 else if((Level)[r][c] == 5)
                 {
                     coor_tr = rcIntoCoor(r,c);
@@ -72,10 +84,18 @@ void Engine::draw()
                 }
             }
         }
+
+        //the following few blocks of code draw explosions on the screen
+        //set up vector of sprites for explosion
         std::vector<Sprite> explosionSprites;
-        //(m_pEngine->explosionHelper).push_back(std::make_tuple((m_pEngine->clock.getElapsedTime()), num, startCell));
+
+        //setting up the explosions in std::vector<Sprite> explosionSprites
+        //for every tuple in Engine::explosionHelper
         for(auto tup:explosionHelper)
         {
+            //explosion animation run only
+            //if current time is greater than explosion start time by less than 1 s
+            //effect is that explosions are seen for 1 s
             if((clock_explo).getElapsedTime().asSeconds() - std::get<0>(tup).asSeconds() <= 1)
             {
                 Sprite temp = m_ExplosionSprite[std::get<1>(tup)-1];
@@ -96,13 +116,17 @@ void Engine::draw()
                 explosionSprites.push_back(temp);
             }
         }
+
+        //drawing the explosions in std::vector<Sprite> explosionSprites
         for(int i = 0; i < explosionSprites.size(); i++)
         {
             m_Window.draw(explosionSprites[i]);
         }
 
-
+        //temp AnimatedSprite Variable that holds sprites for bombs and bombers
         AnimatedSprite dispSprite;
+
+        //draws bombs
         for(int i = 0; i < int((*m_pvBombs).size()); i++)
         {
             if(!((*m_pvBombs)[i]).isBlasted())
@@ -111,19 +135,17 @@ void Engine::draw()
                 m_Window.draw(dispSprite);
             }
         }
-        //draw player 0, upscaled 1.2
+
+        //draw player 0
         dispSprite = (m_PBomber0->getSprite());
-        //dispSprite.setScale(0.8, 0.8);
-
         m_Window.draw(dispSprite);
 
-        //draw player 1, upscaled 1.2
+        //draw player 1
         dispSprite = (m_PBomber->getSprite());
-        //dispSprite.setScale(0.8, 0.8);
         m_Window.draw(dispSprite);
-
 
     }
+
     //display the window
     m_Window.display();
 }
