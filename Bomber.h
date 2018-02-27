@@ -63,24 +63,32 @@ public:
     //Color of the bomber. 0 White, 1 Black, 2 Blue, 3 Red
     int m_color;
 
+    //Bomber constructor, takes texture_bomber, dimensions of sprite, and int color, which selects the sprite from spriteshhed loaded in texture_bomber
     Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int color);
 
 
-    //gives position vector of the sprite
+    //returns collision Rectangle(an IntRect corresponding to the bombers area)
     IntRect getCollisionRect();
 
-    //returns the sprite
-    //called by Engine::draw() to draw on the screen
+    //returns the animated sprite of the bomber
     AnimatedSprite getSprite();
+
+    //sets the bombers position to Vector2fr position
     void setPosition(Vector2f position);
 
+    //returns the bombers position as Vector2i(row, column)
     Vector2i getRCVector();
 
     //returns true if no key(movement key) is pressed. Used in update function above to stop
     bool noKeyPressed();
 
+    //causes movement after collision
+    //takes the intRect of the player and the block as arguments
+    //called from within Bomber::collide()
     void moveAfterCollision(IntRect Player0, IntRect block);
 
+    //handles collision with blocks(breakeable, solid) and walls
+    //takes the vector of vectors of int "Level" as argument
     bool collide(std::vector< std::vector<int> >* Level);
 
     //function that updates m_Sprite(animation, position, continue or stop, etc)
@@ -97,7 +105,9 @@ public:
     void stopDown();
     void stop();
 
+    //function to drop a bomb in the current cell, calls the bomb constructor and takes current time as argument which is passed to said constructor
     void dropBomb(Time start_time);
 
+    //function called when the bomber dies
     void die();
 };

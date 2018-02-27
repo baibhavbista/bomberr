@@ -1,9 +1,17 @@
 #include <SFML/Graphics.hpp>
+//class of main menu
 class MainMenu
 {
 public:
     sf::RenderWindow App;
+
+
+    //MainMenu class constructor, initializes all the required variables for the menu
     MainMenu();
+
+    //starts the Main Menu display loop and returns int depending on option chosen in the menu when pressed enter/return
+    //0 to continue to 2-player game
+    //1 to exit, called when "enter"ed on exit button or when escape key pressed
     int start();
 
 private:

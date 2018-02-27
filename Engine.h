@@ -64,26 +64,44 @@ private:
 
     Event event;
 
-    //input, update and draw functions that are called by public member function Engine::start()
+    //input function called by public member function Engine::start()
+    //does input handling for 3 conditions, game screen, pause screen, and win screen
     void input(Time t);
+
+    //update function called by public member function Engine::start()
+    //does updating of the sprites according to the condition, runs in game screen only
     void update(Time dt, Time t);
+
+    //draw function called by public member function Engine::start()
+    //draws everything out on the screen, for 3 conditions, game screen, pause screen, and win screen
     void draw();
 
+    //called from within Engine::update()
+    //enables player to pick up PowerUps
     void PowerupCheck(Bomber* m_PBomber);
 
+    //function for resuming game, sets private bool m_gamePaused to false
     void resume();
+
+    //function for pausing game, sets private bool m_gamePaused to true
     void pause();
+
+    //function for finishing game after either player wins or time finishes
+    //the value of int loser corresponds to state
+    //0-draw, 1-player1 lost, 2-player2 lost
     int gameOver(int loser);
 
 
-
-
-
 public:
+
+    //constructor for the engine class, initializes all the required variables
     Engine(RenderWindow& window);
+
+    //runs game loop , calls input, update, draw within the loop
+    void start();
+
     friend class Bomber;
     friend class Bomb;
     friend class Explosion;
-    //runs game loop , calls input, update, draw within the loop
-    void start();
+
 };

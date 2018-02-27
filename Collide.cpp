@@ -1,6 +1,7 @@
 
 #include "RCintoCoor.h"
 #include "Engine.h"
+
 IntRect Bomber::getCollisionRect()
 {
     float x, y;
