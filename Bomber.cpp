@@ -9,12 +9,16 @@ using namespace sf;
 Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int color):
     m_pEngine(pEngine), Level(&(pEngine->Level)), m_TextureBomb(pEngine->m_BombTexture), m_TextureBomber(texture_bomber), m_Sprite(sf::seconds(0.2), true, false)
 {
+    //set up bomber variables
     m_lastKilledTime = pEngine->clock_explo.getElapsedTime();
     m_lives = 3;
     m_pvBombs = &(pEngine->m_vBombs);
     m_numBombs = 3;
     m_bombRange = 1;
+
+    //scale down sprite for bomber since high res compared to other sprites
     m_Sprite.setScale(0.8,0.8);
+
     //color of the bomber
     m_color = color;
 
@@ -22,15 +26,6 @@ Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int
     m_Speed = 80;
 
     //Starting positions
-    //if player(color) 0, start at top left
-    //if player 1, start at bottom right
-    // TODO
-    //set to correct values after hud and walls
-    /*
-    if(color==0)
-        m_Position = Vector2f(rcIntoCoor(0, 0).x-22, rcIntoCoor(0, 0).y-32) ;
-    else
-        m_Position = Vector2f(rcIntoCoor(10, 16).x-22, rcIntoCoor(10, 16).y-32);*/
     m_Position.x = (color==0)?(52-spriteDim.x/2):(567-spriteDim.x/2);
     m_Position.y = (color==0)?(126-spriteDim.y/2):(421-spriteDim.y/2);
     m_spriteDim = spriteDim;
@@ -84,7 +79,7 @@ Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int
     //set the pointer currentAnimation to down as the starting default
     currentAnimation = &walkingAnimationDown;
 
-
+    //animation for death of bomber(player)
     m_RectSourceSprite = m_RectSourceSprite_down;
     m_RectSourceSprite.top += 4*spriteDim.y;
     animationDead.setSpriteSheet(texture_bomber);
@@ -93,9 +88,6 @@ Bomber::Bomber(Engine* pEngine, Texture& texture_bomber, Vector2f spriteDim, int
         animationDead.addFrame(m_RectSourceSprite);
         m_RectSourceSprite.left += spriteDim.x;
     }
-
-
-
 }
 
 //returns the sprite
@@ -105,12 +97,13 @@ AnimatedSprite Bomber::getSprite()
     return m_Sprite;
 }
 
+//sets the position of the bomber sprite to position
 void Bomber::setPosition(Vector2f position)
 {
     m_Sprite.setPosition(position);
 }
 
-
+//returns Vector2i (row, column) of the bomber
 Vector2i Bomber::getRCVector()
 {
     Vector2f Position =m_Sprite.getPosition();
@@ -132,8 +125,6 @@ bool Bomber::noKeyPressed()
 //function that updates m_Sprite(animation, position, continue or stop, etc)
 void Bomber::update(Time dt)
 {
-
-    //std::cout <<"Position bomber " <<m_color << " "<< getRCVector().x << " " << getRCVector().y << std::endl;
     float elapsedTime = dt.asSeconds();
     if(m_RightPressed)
     {
@@ -203,7 +194,9 @@ void Bomber::stopDown()
 }
 
 
-
+//function to stop all movement of the bomber
+//sets all movement booleans to false
+//stops animation of animated sprite
 void Bomber::stop()
 {
     m_DownPressed = false;
@@ -213,7 +206,8 @@ void Bomber::stop()
     m_Sprite.stop();
 }
 
-
+//drops bombs
+//calls constructor for bomb and pushes the bomb to v_Bombs through m_pvBombs
 void Bomber::dropBomb(Time start_time)
 {
     if(m_numBombs > 0)
@@ -221,40 +215,34 @@ void Bomber::dropBomb(Time start_time)
         Vector2f Position =m_Sprite.getPosition();
         Position = coorIntoGood(Vector2f(Position.x + 15, Position.y + 15));
         Vector2i rc = coorToRc(Position);
-        std::cout << "Bomb location" << rc.x << " " << rc.y << std::endl;
-        /*if(currentAnimation==&walkingAnimationDown)
-            Position.x += 1;
-        else if(currentAnimation==&walkingAnimationUp)
-            Position.x -= 1;
-        else if(currentAnimation==&walkingAnimationRight)
-            Position.y += 1;
-        else if(currentAnimation==&walkingAnimationLeft)
-            Position.y -= 1;
-        */
         if((*Level)[rc.x][rc.y]==0)
         {
             Position = rcIntoCoor(rc.x, rc.y);
             m_pvBombs->push_back(Bomb(m_pEngine, this, Position, m_bombRange, start_time));
             m_numBombs--;
-            std::cout << "inside funcn dropbomb : " << m_numBombs << std::endl;
         }
     }
 }
 
+//function called when player dies or gets damaged(health decrease)
 void Bomber::die()
 {
+    //if has been 1 s since last died
     if(m_pEngine->clock_explo.getElapsedTime().asSeconds() - m_lastKilledTime.asSeconds() > 1)
     {
+        //sets last killed time to current time
         m_lastKilledTime = m_pEngine->clock_explo.getElapsedTime();
+
+        //decreases lives
         m_lives--;
-        std::cout <<"died: " << (m_lives) << "lives left" << std::endl;
+
         if(m_lives==0)
         {
             m_Sprite.play(animationDead);
+            //calls Engine::gameOver passing current bomber as loser.
             m_pEngine->gameOver(m_color+1);
         }
     }
-
 }
 
 

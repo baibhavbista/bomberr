@@ -18,29 +18,36 @@ const IntRect RIGHTWALL(578, 0, 27, 481);
 class Bomber
 {
 private:
-
     Engine* m_pEngine;
+
     //this vector holds the x and y position of the sprite
     Vector2f m_Position;
 
+    //saves last killed time
+    //enables us to implement cannot die for some time after dying
     Time m_lastKilledTime;
+
     //vector that has the bombs
     std::vector<Bomb>* m_pvBombs;
+
     //num of bombs
     int m_numBombs;
     int m_bombRange;
     int m_lives;
+
     //booleans that are set when have to move in a certain direction
     bool m_LeftPressed;
     bool m_RightPressed;
     bool m_UpPressed;
     bool m_DownPressed;
 
+    //Pointer to level
     std::vector< std::vector<int> >* Level;
 
-
+    //sprite dimensions for loading from file
     Vector2f m_spriteDim;
 
+    //animated sprite of the bomber
     AnimatedSprite m_Sprite;
 
     //speed of the bomber in pixels/sec

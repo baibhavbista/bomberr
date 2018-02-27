@@ -11,23 +11,35 @@ class Engine
 {
 private:
 
+    //bool that stores condition of program. True if paused
     bool m_gamePaused;
+
+    //bool that stores condition of program. True if game over
     bool m_gameOver;
+    //int that stores info about game over condition
+    //0 if draw, 1 if Player 1 won, 2 if player 2 won
     int m_gameOverCode;
+
     //main program window
     RenderWindow& m_Window;
 
+    //Vector of vector of ints that stores level information(position of breakeable, unbreakeable blocks) (taken from random .csv file in Levels folder)
     std::vector < std::vector<int> > Level;
 
+    //Vector of tuples(Beginning Time of explosion, an int which corresponds to which animation to show, Position of cell(row, column))
     std::vector< std::tuple<Time, int, Vector2i> > explosionHelper;
-     //LevelMaker m_level;
+
+    //Pausable timer for use in countdown clock
     PausableTimer displayTimer;
+
+    //clock for explosion manipulation
     Clock clock_explo;
 
+    //Text and Font objects for countdown timer in Heads Up Display(HUD)
     Text timeDisplayText;
     Font timeDisplayFont;
 
-
+    //Text and Font objects for lives left for players in Heads Up Display(HUD)
     Text player0LifeText;
     Text player1LifeText;
     Font playerLifeFont;
@@ -61,19 +73,21 @@ private:
     Sprite m_PowerSprite6;
     Sprite m_PowerSprite7;
 
+    //pointer to array of sprites for explosion
     Sprite* m_ExplosionSprite;
 
-    std::vector<Bomb>* m_pvBombs;
+    //Vector of bombs planted and its pointer
     std::vector<Bomb> m_vBombs;
+    std::vector<Bomb>* m_pvBombs;
 
-    //LevelMaker* m_plevel;
-    //std::vector<Breakeable>* m_pvBlocksBreakable;
 
-    //Pointer to a bomber
-    Bomber* m_PBomber;
+    //Pointer to bombers
+    //m_PBomber0 points to player 1, m_PBomber to player 2
+    //confusing naming because of the position in the spritesheet and future expansion to different colors
     Bomber* m_PBomber0;
+    Bomber* m_PBomber;
 
-
+    //event object
     Event event;
 
     //input function called by public member function Engine::start()

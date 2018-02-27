@@ -18,15 +18,11 @@ void Bomber::moveAfterCollision(IntRect Player0, IntRect block)
         stop();
         if(block.left > Player0.left)
         {
-            std::cout << "R" << std::endl;
-            //moveLeft();
             m_LeftPressed = true;
         }
 
         else
         {
-            std::cout << "L" << std::endl;
-            //moveRight();
             m_RightPressed = true;
         }
     }
@@ -36,15 +32,10 @@ void Bomber::moveAfterCollision(IntRect Player0, IntRect block)
         stop();
         if(block.top > Player0.top)
         {
-
-            std::cout << "D" << std::endl;
-            //moveUp();
             m_UpPressed = true;
         }
         else
         {
-            std::cout << "U" << std::endl;
-            //moveDown();
             m_DownPressed = true;
         }
     }

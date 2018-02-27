@@ -54,15 +54,7 @@ void Bomb::blast()
     Explosion(m_pEngine, cell, m_range);
     m_pBomber->m_numBombs++;
 
-    for(auto a:*Level)
-    {
-        for(auto b:a)
-        {
-            std::cout.width(2);
-            std::cout <<b << " ";
-        }
-        std::cout << std::endl;
-    }
+
 }
 
 bool Bomb::isBlasted()

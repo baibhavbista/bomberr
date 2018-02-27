@@ -58,7 +58,6 @@ void Explosion::explodeDirection(Vector2i startCell, Vector2i unitVector)
         currCell.y += unitVector.y;
         if(currCell.y<0 ||currCell.x < 0 || currCell.x > 10 ||currCell.y > 16||(m_pEngine->Level)[currCell.x][currCell.y]==2)
             break;
-        std::cout << currCell.x << " " << currCell.y << std::endl;
         int num;
         num = (unitVector.x==0)?3:2;
         if(i==m_blastRange-1)

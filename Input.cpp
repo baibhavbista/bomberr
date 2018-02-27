@@ -8,7 +8,6 @@ using namespace sf;
 //escape closes the program
 void Engine::input(Time t, Clock timer)
 {
-    //std::cout << "input" << std::endl;
     if(m_gameOver)
     {
         while(m_Window.pollEvent(event))

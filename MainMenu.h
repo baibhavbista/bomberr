@@ -5,7 +5,6 @@ class MainMenu
 public:
     sf::RenderWindow App;
 
-
     //MainMenu class constructor, initializes all the required variables for the menu
     MainMenu();
 
@@ -15,18 +14,19 @@ public:
     int start();
 
 private:
+    //Texture and sprite for the Background of the main menu
     sf::Texture Texture_back;
     sf::Sprite Sprite_back;
 
+    //Rectangle shapes to contain menu elements
     sf::RectangleShape Menu1;
 	sf::RectangleShape Menu2;
     sf::RectangleShape Menu3;
 
+    //textures for different menu elements
 	sf::Texture p2ubuttontext;
 	sf::Texture p1dbuttontext;
 	sf::Texture p2buttontext;
 	sf::Texture exitutext;
 	sf::Texture exittext;
-    sf::Texture continueutext;
-    sf::Texture continuetext;
 };
